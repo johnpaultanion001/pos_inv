@@ -49,7 +49,7 @@ class OrderController extends Controller
     public function orders()
     {
         $orders = OrderProduct::where('user_id', auth()->user()->id)
-                                 ->where('isCheckout', false)->get();
+                                 ->where('isCheckout', false)->paginate(5);
         return view('customer.orders' ,compact('orders'));
     }
 
