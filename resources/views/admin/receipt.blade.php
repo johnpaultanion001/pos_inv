@@ -23,12 +23,29 @@
             <hr style="border-top: 2px dashed gray;">
             <div class="col-12">
                 <div class="row">
-                   
+                   <?php
+                    $subtotal = $order->orderproducts->sum->amount;
+                    $service_fee = 55;
+
+                    $total = $subtotal + $service_fee;
+                   ?>
                         <div class="col-6">
-                            <p class="text-uppercase text-dark">AMOUNT</p> 
+                            <p class="text-uppercase text-dark">SUBTOTAL</p> 
                         </div>
                         <div class="col-6 text-right">
                             <p class="text-uppercase text-dark">₱ {{ number_format($order->orderproducts->sum->amount ?? '' , 2, '.', ',') }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-uppercase text-dark">DELIVERY FEE</p> 
+                        </div>
+                        <div class="col-6 text-right">
+                            <p class="text-uppercase text-dark">₱ 55.00</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-uppercase text-dark">TOTAL</p> 
+                        </div>
+                        <div class="col-6 text-right">
+                            <p class="text-uppercase text-dark">₱ {{ number_format($total ?? '' , 2, '.', ',') }}</p>
                         </div>
                    
                 </div>

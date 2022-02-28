@@ -14,12 +14,22 @@
                 <div class="card p-2">
                     <div class="card-header border-0">
                         <div class="row ">
-                            <div class="col-md-11">
+                            <div class="col-md-10">
                                 <h4 class="mb-0 text-uppercase" id="titletable">Manage Products</h4>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <button type="button" name="create_record" id="create_record" class="text-uppercase create_record btn btn-sm btn-primary">New Product</button>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <select name="category_dd" id="category_dd" class="select2" style="width: 100%;">
+                                        <option value="">FILTER CATEGORY</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->name}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>    
                         
                         </div>
                     </div>
@@ -29,6 +39,7 @@
                                 <tr>
                                     <th scope="col">Actions</th>
                                     <th scope="col">IMAGE</th>
+                                    <th  scope="col">CATEGORY</th>
                                     <th scope="col">PRODUCT ID</th>
                                     <th scope="col">NAME</th>
                                     <th scope="col">DESCRIPTION</th>
@@ -50,6 +61,9 @@
                                             <img style="vertical-align: bottom;"  height="100" width="100" src="{{URL::asset('/assets/img/products/'.$product->image)}}" />
                                         </td>
                                         <td>
+                                            <span class="badge bg-info">{{  $product->category->name ?? '' }}</span>
+                                        </td>
+                                        <td>
                                             {{  $product->id ?? '' }}
                                         </td>
                                         <td>
@@ -65,7 +79,7 @@
                                             {{  $product->stock ?? '' }}
                                         </td>
                                         <td>
-                                            {{ \Carbon\Carbon::parse($product->created_at)->format('d-m-Y / h:i:s A')}}
+                                            {{ $product->created_at->format('M j , Y h:i A') }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -92,47 +106,47 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Name: <span class="text-danger">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control disabled" onfocus="focused(this)" onfocusout="defocused(this)">
-                                <span class="invalid-feedback" role="alert">
-                                    <strong id="error-name"></strong>
-                                </span>
-                            </div>
+                        
+                            <label class="form-label">Name: <span class="text-danger">*</span></label>
+                            <input type="text" name="name" id="name" class="form-control disabled" >
+                            <span class="invalid-feedback" role="alert">
+                                <strong id="error-name"></strong>
+                            </span>
+                            
                             
                         </div>
                         
                         <div class="form-group">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Price: <span class="text-danger">*</span></label>
-                                <input type="number" name="price" id="price" class="form-control disabled" onfocus="focused(this)"  step="any" onfocusout="defocused(this)">
-                                <span class="invalid-feedback" role="alert">
-                                    <strong id="error-price"></strong>
-                                </span>
-                            </div>
-                            
+                            <label class="form-label">Price: <span class="text-danger">*</span></label>
+                            <input type="number" name="price" id="price" class="form-control disabled">
+                            <span class="invalid-feedback" role="alert">
+                                <strong id="error-price"></strong>
+                            </span>
                         </div>
                         <div class="form-group">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Stock: <span class="text-danger">*</span></label>
-                                <input type="number" name="stock" id="stock" class="form-control disabled" onfocus="focused(this)" onfocusout="defocused(this)">
-                                <span class="invalid-feedback" role="alert">
-                                    <strong id="error-stock"></strong>
-                                </span>
-                            </div>
+                            <label class="form-label">Stock: <span class="text-danger">*</span></label>
+                            <input type="number" name="stock" id="stock" class="form-control disabled">
+                            <span class="invalid-feedback" role="alert">
+                                <strong id="error-stock"></strong>
+                            </span>
                         </div>
                             
                         <div class="form-group">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Description: </label>
-                                <input type="text" name="description" id="description" class="form-control disabled" onfocus="focused(this)" onfocusout="defocused(this)">
-                                <span class="invalid-feedback" role="alert">
-                                    <strong id="error-description"></strong>
-                                </span>
-                            </div>
-                           
+                            <label class="form-label">Description: </label>
+                            <input type="text" name="description" id="description" class="form-control disabled" >
+                            <span class="invalid-feedback" role="alert">
+                                <strong id="error-description"></strong>
+                            </span>
                         </div>
              
+                        <div class="form-group">
+                            <label class="form-label">Category: <span class="text-danger">*</span></label>
+                            <select name="category" id="category" class="select2 form-control" style="width: 100%; ">
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-group" id="image-section">
                             <label class="form-label">Image: <span class="text-danger">*</span></label>
@@ -158,13 +172,11 @@
                                 </div>
                             </div>
                         <div class="form-group" id="added_section">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Added Stock: <span class="text-danger">*</span></label>
-                                    <input type="number" name="added_stock" id="added_stock" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+                               <label class="form-label">Added Stock: <span class="text-danger">*</span></label>
+                                    <input type="number" name="added_stock" id="added_stock" class="form-control">
                                 <span class="invalid-feedback" role="alert">
                                     <strong id="error-added_stock"></strong>
                                 </span>
-                            </div>
                         </div>
                         
 
@@ -196,11 +208,18 @@
     'columnDefs': [{ 'orderable': false, 'targets': 0 }],
     });
 
-    $('.datatable-table:not(.ajaxTable)').DataTable({ buttons: dtButtons });
+    var table = $('.datatable-table:not(.ajaxTable)').DataTable({ buttons: dtButtons });
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
         $($.fn.dataTable.tables(true)).DataTable()
             .columns.adjust();
         });
+
+    $('.select2').select2();
+
+    $('#category_dd').on('change', function () {
+      table.columns(2).search( this.value ).draw();
+    });
+
     });
 
 $(document).on('click', '#create_record', function(){
@@ -323,6 +342,11 @@ $(document).on('click', '.edit', function(){
             $.each(data.result, function(key,value){
                 if(key == $('#'+key).attr('id')){
                     $('#'+key).val(value)
+                }
+                if(key == 'category_id'){
+                    $("#category").select2("trigger", "select", {
+                        data: { id: value }
+                    });
                 }
                 if(key == 'image'){
                     $('#current_image').attr("src", '/assets/img/products/'  + value);

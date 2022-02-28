@@ -21,7 +21,6 @@
               <div class="card-body">
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
-                      <div class="input-group input-group-outline my-3">
                         <label class="form-label">Email</label>
                         <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"  value="{{ old('email') }}" required autocomplete="email" autofocus>
                         @error('email')
@@ -29,8 +28,6 @@
                               <strong>{{ $message }}</strong>
                           </span>
                         @enderror
-                      </div>
-                      <div class="input-group input-group-outline mb-3">
                         <label class="form-label">Password</label>
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     
@@ -39,7 +36,6 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-                      </div>
                       <div class="form-check form-switch d-flex align-items-center mb-3">
                         <input class="form-check-input" type="checkbox" id="rememberMe">
                         <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>

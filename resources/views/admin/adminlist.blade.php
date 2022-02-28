@@ -1,5 +1,5 @@
 @extends('../layouts.admin')
-@section('sub-title','Customers')
+@section('sub-title','Admin List')
 @section('navbar')
     @include('../partials.admin.navbar')
 @endsection
@@ -14,10 +14,12 @@
                 <div class="card p-2">
                     <div class="card-header border-0">
                         <div class="row ">
-                            <div class="col-md-11">
-                                <h4 class="mb-0 text-uppercase" id="titletable">Manage Customers</h4>
+                            <div class="col-md-10">
+                                <h4 class="mb-0 text-uppercase" id="titletable">Manage Admins</h4>
                             </div>
-                          
+                            <div class="col-md-2">
+                                <button type="button" id="create_record" class="btn btn-sm btn-primary">New Admin</button>
+                            </div>
                         
                         </div>
                     </div>
@@ -25,51 +27,28 @@
                         <table class="table datatable-table display" width="100%">
                             <thead class="text-uppercase thead-white">
                                 <tr class="text-uppercase">
-                                  <th  scope="col">Actions</th>
-                                  <th  scope="col">STATUS</th>
+                                  <th  scope="col">ACTIONS</th>
                                   <th  scope="col">NAME</th>
                                   <th  scope="col">EMAIL</th>
-                                  <th  scope="col">CONTACT NUMBER</th>
-                                  <th  scope="col">ADDRESS</th>
-                                  <th  scope="col">ID</th>
                                   <th scope="col">CREATED AT</th>
                                 </tr>
                             </thead>
                             <tbody class="font-weight-bold">
-                                @foreach($customers as $customer)
+                                @foreach($admins as $admin)
                                 <tr>
                                   <td>
-                                    <button type="button" name="edit" edit="{{  $customer->id ?? '' }}"  class="edit  btn btn-sm btn-info">Edit Info</button>
+                                    <button type="button" name="edit" edit="{{  $admin->id ?? '' }}"  class="edit  btn btn-sm btn-info">Edit Info</button>
+                                  </td>
+
+                                  <td>
+                                      {{  $admin->name ?? '' }}
                                   </td>
                                   <td>
-                                    <button type="button" name="status" status="{{  $customer->id ?? '' }}" 
-                                    class="status btn btn-sm @if($customer->isApproved == '0') btn-warning @else btn-success @endif">
-                                    @if($customer->isApproved == '0')
-                                        PENDING
-                                    @else
-                                        APPROVED
-                                    @endif
-                                    </button>
+                                      {{  $admin->email ?? '' }}
                                   </td>
+                                
                                   <td>
-                                      {{  $customer->name ?? '' }}
-                                  </td>
-                                  <td>
-                                      {{  $customer->email ?? '' }}
-                                  </td>
-                                  <td>
-                                      {{  $customer->contact_number ?? '' }}
-                                  </td>
-                                  <td>
-                                      {{  $customer->address ?? '' }}
-                                  </td>
-                                  <td>
-                                    <a href="/assets/img/id/{{$customer->id_image}}" target="_blank">
-                                        <img style="vertical-align: bottom;"  height="100"  width="100" src="{{URL::asset('/assets/img/id/'.$customer->id_image)}}" />
-                                    </a>
-                                  </td>
-                                  <td>
-                                      {{ $customer->created_at->format('M j , Y h:i A') }}
+                                      {{ $admin->created_at->format('M j , Y h:i A') }}
                                   </td>
                                 </tr>
                                 @endforeach
@@ -87,7 +66,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
+              <h5 class="modal-title text-uppercase">Modal title</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                   <i class="fas fa-times text-primary"></i>
               </button>
@@ -96,42 +75,37 @@
                   
 
                   <div class="form-group">
-                   
-                          <label class="form-label">Email</label>
-                          <input type="email" name="email" id="email" class="form-control disabled" readonly >
-                     
-                  </div>
-
-                  <div class="form-group">
-                  
-                          <label class="form-label">Name</label>
-                          <input type="name" name="name" id="name" class="form-control disabled" >
-                   
-                      <span class="invalid-feedback" role="alert">
-                        <strong id="error-name"></strong>
+                          <label class="form-label text-uppercase">Email <span class="text-danger">*</span></label>
+                          <input type="email" name="email" id="email" class="form-control">
+                    <span class="invalid-feedback" role="alert">
+                        <strong id="error-email"></strong>
                       </span>
                   </div>
 
                   <div class="form-group">
-                      
-                          <label class="form-label">Contact Number</label>
-                          <input type="number" name="contact_number" id="contact_number" class="form-control disabled" >
-                  
-                      <span class="invalid-feedback" role="alert">
-                        <strong id="error-contact_number"></strong>
-                      </span>
+                          <label class="form-label text-uppercase">Name <span class="text-danger">*</span></label>
+                          <input type="name" name="name" id="name" class="form-control" >
+                        <span class="invalid-feedback" role="alert">
+                            <strong id="error-name"></strong>
+                        </span>
                   </div>
 
                   <div class="form-group">
-                      
-                          <label class="form-label">Address</label>
-                          <input type="text" name="address" id="address" class="form-control disabled" >
-                     
-                      <span class="invalid-feedback" role="alert">
-                        <strong id="error-address"></strong>
-                      </span>
+                          <label class="form-label text-uppercase">Password <span class="text-danger">*</span></label>
+                          <input type="password" name="password" id="password" class="form-control" >
+                        <span class="invalid-feedback" role="alert">
+                            <strong id="error-password"></strong>
+                        </span>
                   </div>
-                  
+                    <hr>
+                  <div class="form-group">
+                          <label class="form-label text-uppercase">SIGN IN PASSWORD <span class="text-danger">*</span></label>
+                          <input type="password" name="sign_in_password" id="sign_in_password" class="form-control" >
+                            <span class="invalid-feedback" role="alert">
+                                <strong id="error-sign_in_password"></strong>
+                            </span>
+                  </div>
+
                   <input type="hidden" name="action" id="action" value="Add" />
                   <input type="hidden" name="hidden_id" id="hidden_id" />
                 
@@ -204,6 +178,8 @@
               
               $('#action_button').val('Update');
               $('#action').val('Edit');
+              $('#email').attr('readonly', true);
+              $('#password_default').show();
           }
       })
   });
@@ -211,9 +187,15 @@
   $('#myForm').on('submit', function(event){
     event.preventDefault();
     
-    var id = $('#hidden_id').val();
-    var action_url = "/admin/customer_list/" + id;
-    var type = "PUT"; 
+    var action_url = "{{ route('admin.admin.store') }}";
+    var type = "POST";
+
+    if($('#action').val() == 'Edit'){
+        var id = $('#hidden_id').val();
+        action_url = "/admin/admin_list/" + id;
+        type = "PUT";
+    }
+
 
     $.ajax({
         url: action_url,
@@ -222,14 +204,12 @@
         dataType:"json",
         beforeSend:function(){
             $("#action_button").attr("disabled", true);
-            $("#action_button").attr("value", "Loading..");
         },
         success:function(data){
-            var html = '';
+            $("#action_button").attr("disabled", false);
+
             if(data.errors){
                 $.each(data.errors, function(key,value){
-                    $("#action_button").attr("disabled", false);
-                    $("#action_button").attr("value", "Update");
                 
                     if(key == $('#'+key).attr('id')){
                         $('#'+key).addClass('is-invalid')
@@ -238,9 +218,6 @@
                 })
             }
             if(data.success){
-                $("#action_button").attr("disabled", false);
-                $("#action_button").attr("value", "Update");
-                
                 $('.form-control').removeClass('is-invalid')
                 $('#myForm')[0].reset();
                 $('#formModal').modal('hide');
@@ -354,6 +331,17 @@
         }
     })
 });
+
+    $(document).on('click', '#create_record', function(){
+        $('#formModal').modal('show');
+        $('#myForm')[0].reset();
+        $('.form-control').removeClass('is-invalid')
+        $('.modal-title').text('Add New Admin');
+        $('#action_button').val('Submit');
+        $('#action').val('Add');
+        $('#password_default').hide();
+        $('#email').attr('readonly', false);
+    });
 </script>
 @endsection
 

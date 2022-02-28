@@ -24,6 +24,8 @@ class UserSeeder extends Seeder
                 'address'  => null,
                 'remember_token' => null,
                 'role' => 'admin',
+                'isApproved'    => 1,
+                'id_image'   => null,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
@@ -36,6 +38,8 @@ class UserSeeder extends Seeder
                 'address'  => 'ANTIPOLO CITY',
                 'remember_token' => null,
                 'role' => 'customer',
+                'isApproved'    => 1,
+                'id_image'   => 'id1.png',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
                

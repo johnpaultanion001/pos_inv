@@ -7,18 +7,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'LandingpageController@index')->name('landingpage');
 Route::get('view/{product}', 'LandingpageController@view')->name('view');
 
+
+Route::group(['prefix' => 'customer', 'as' => 'customer.', 'namespace' => 'Customer', 'middleware' => ['auth']], function () {
+    Route::get('/approve', function() {
+           return view('auth.checkapprove');
+         });
+ });
+
+
+
 Auth::routes();
 
 
-Route::group(['prefix' => 'customer', 'as' => 'customer.', 'namespace' => 'Customer', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'customer', 'as' => 'customer.', 'namespace' => 'Customer', 'middleware' => ['auth', 'checkapproved']], function () {
    
     // Home
     Route::get('home', 'HomeController@index')->name('home');
 
-    //User Update
-    Route::get('update', 'UserController@updateshow')->name('updateshow');
-    Route::put('update/{user}', 'UserController@update')->name('update');
-    Route::put('changepassword/{user}', 'UserController@changepassword')->name('changepassword');
+    // //User Update
+    // Route::get('update', 'UserController@updateshow')->name('updateshow');
+    // Route::put('update/{user}', 'UserController@update')->name('update');
+    // Route::put('changepassword/{user}', 'UserController@changepassword')->name('changepassword');
 
     //Add To Cart
     Route::post('addtocart', 'OrderController@addtocart')->name('addtocart');
@@ -54,5 +63,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
      Route::get('customer_list/{user}/edit', 'CustomerListController@edit')->name('customer.edit');
      Route::put('customer_list/{user}', 'CustomerListController@update')->name('customer.update');
      Route::put('customer_list/{user}/dpass', 'CustomerListController@defaultPassowrd')->name('customer.dpass');
+
+     // Admin List
+     Route::get('admin_list', 'CustomerListController@admin_index')->name('admin');
+     Route::post('admin_list', 'CustomerListController@admin_store')->name('admin.store');
+     Route::put('admin_list/{admin}', 'CustomerListController@admin_update')->name('admin.update');
+
+     // Change Status
+     Route::put('customer/status/{user}', 'CustomerListController@status')->name('customer.status');
     
+     // Categories
+     Route::resource('categories', 'CategoryController');
 });

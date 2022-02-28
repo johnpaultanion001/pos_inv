@@ -21,7 +21,13 @@
       <ul class="navbar-nav mx-auto">
        
        <li class="nav-item">
-         <a class="nav-link me-2" href="/">
+         <a class="nav-link me-2" href="
+            @if (Auth::user()) 
+              /customer/home
+            @else
+              /
+            @endif
+          ">
            <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
            Home
          </a>
@@ -33,12 +39,12 @@
               Order History
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link me-2" href="/">
               <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
               Profile
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link me-2" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
              <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>

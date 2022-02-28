@@ -36,6 +36,14 @@
     background: #fff;
     box-shadow: 0px 1px 4px 1px #ddd;
   }
+  .form-control:focus{
+      border: solid 1px #111 !important;
+  }
+  .form-control{
+      border: solid 1px gray !important;
+      padding: 0.625rem 0.75rem !important; */
+      line-height: 1.3 !important;
+  }
 </style>
 </head>
 

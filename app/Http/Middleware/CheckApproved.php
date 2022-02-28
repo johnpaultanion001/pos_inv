@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 
 
-class CheckRegistered
+class CheckApproved
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class CheckRegistered
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->isRegistered == false) {
-            return redirect()->to('patient/update');
+        if (auth()->user()->isApproved == false) {
+            return redirect()->to('customer/approve');
         }
         return $next($request);
     }

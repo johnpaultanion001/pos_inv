@@ -17,7 +17,8 @@ class ProductSeeder extends Seeder
         $products = [
             [
                 'image'           => 'p1.png',
-                'name'            => 'Yakult',
+                'name'            => '555 TUNA',
+                'category_id'     => '1',
                 'description'     => 'Sample Product',
                 'price'           => 10,
                 'stock'           => 100,
@@ -26,7 +27,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 'image'           => 'p2.png',
-                'name'            => 'Mang Tomas',
+                'name'            => 'Idol Cheese Dog',
+                'category_id'     => '2',
                 'description'     => 'Sample Product',
                 'price'           => 20,
                 'stock'           => 100,
@@ -35,7 +37,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 'image'           => 'p3.png',
-                'name'            => 'Datu Puti Soy Souce',
+                'name'            => 'Piatos',
+                'category_id'     => '3',
                 'description'     => 'Sample Product',
                 'price'           => 25,
                 'stock'           => 100,
@@ -45,6 +48,7 @@ class ProductSeeder extends Seeder
             [
                 'image'           => 'p4.png',
                 'name'            => 'Lucky Me Beef',
+                'category_id'     => '4',
                 'description'     => 'Sample Product',
                 'price'           => 10,
                 'stock'           => 100,
@@ -54,6 +58,7 @@ class ProductSeeder extends Seeder
             [
                 'image'           => 'p5.png',
                 'name'            => 'Lucky Me Chicken',
+                'category_id'     => '4',
                 'description'     => 'Sample Product',
                 'price'           => 10,
                 'stock'           => 100,

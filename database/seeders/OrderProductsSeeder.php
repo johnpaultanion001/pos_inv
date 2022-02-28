@@ -17,8 +17,8 @@ class OrderProductsSeeder extends Seeder
         $product_orders = [
             [
                 'user_id'             => '2',
-                'product_id'          => '1001',
-                'order_id'            => '10001',
+                'product_id'          => '1',
+                'order_id'            => '1',
                 'qty'                 => '50',
                 'amount'              => '500',
                 'isCheckout'          => '1',
@@ -27,8 +27,8 @@ class OrderProductsSeeder extends Seeder
             ],
             [
                 'user_id'             => '2',
-                'product_id'          => '1002',
-                'order_id'            => '10001',
+                'product_id'          => '2',
+                'order_id'            => '1',
                 'qty'                 => '50',
                 'amount'              => '1000',
                 'isCheckout'          => '1',
@@ -37,8 +37,8 @@ class OrderProductsSeeder extends Seeder
             ],
             [
                 'user_id'             => '2',
-                'product_id'          => '1003',
-                'order_id'            => '10001',
+                'product_id'          => '3',
+                'order_id'            => '1',
                 'qty'                 => '50',
                 'amount'              => '1250',
                 'isCheckout'          => '1',
@@ -47,8 +47,8 @@ class OrderProductsSeeder extends Seeder
             ],
             [
                 'user_id'             => '2',
-                'product_id'          => '1004',
-                'order_id'            => '10001',
+                'product_id'          => '4',
+                'order_id'            => '1',
                 'qty'                 => '50',
                 'amount'              => '500',
                 'isCheckout'          => '1',
@@ -57,8 +57,8 @@ class OrderProductsSeeder extends Seeder
             ],
             [
                 'user_id'             => '2',
-                'product_id'          => '1005',
-                'order_id'            => '10001',
+                'product_id'          => '5',
+                'order_id'            => '1',
                 'qty'                 => '50',
                 'amount'              => '500',
                 'isCheckout'          => '1',

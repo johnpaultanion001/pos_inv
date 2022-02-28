@@ -20,22 +20,18 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-
-        'birth_date',
-        'age',
         'contact_number',
-        'civil_status',
-        'gender',
         'address',
         
         'role',
+        'isApproved',
+        'id_image',
+
         'created_at',
         'updated_at',
         'deleted_at',
         'remember_token',
         'email_verified_at',
-
-        'isRegistered',
     ];
 
     /**
@@ -56,9 +52,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function brgy_certificate()
-    {
-        return $this->hasMany(BrgyCertificate::class, 'user_id', 'id');
-    }
 }

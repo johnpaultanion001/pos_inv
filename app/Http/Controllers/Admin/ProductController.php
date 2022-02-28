@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Validator;
@@ -26,7 +27,9 @@ class ProductController extends Controller
             date_default_timezone_set('Asia/Manila');
             
             $products = Product::latest()->get();
-            return view('admin.products', compact('products'));
+            $categories = Category::latest()->get();
+
+            return view('admin.products', compact('products', 'categories'));
         }
         return abort('403');
     }
@@ -43,6 +46,7 @@ class ProductController extends Controller
         date_default_timezone_set('Asia/Manila');
         $validated =  Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
+            'category' => ['required'],
             'stock' => ['required' ,'integer','min:1'],
             'price' => ['required' ,'numeric','min:1'],
             'image' =>  ['required' , 'mimes:png,jpg,jpeg,svg,bmp,ico', 'max:2040'],
@@ -58,6 +62,7 @@ class ProductController extends Controller
 
         Product::create([
             'name' => $request->input('name'),
+            'category_id' => $request->input('category'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'stock' => $request->input('stock'),
@@ -87,7 +92,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         if (request()->ajax()) {
-            return response()->json(['result' =>  $product]);
+            return response()->json(
+                ['result' =>  $product]
+            );
         }
     }
 
@@ -103,6 +110,7 @@ class ProductController extends Controller
         date_default_timezone_set('Asia/Manila');
         $validated =  Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
+            'category' => ['required'],
             'stock' => ['required' ,'integer','min:1'],
             'price' => ['required' ,'numeric','min:1'],
             'image' =>  ['mimes:png,jpg,jpeg,svg,bmp,ico', 'max:2040'],
@@ -123,6 +131,7 @@ class ProductController extends Controller
         }
        
         $product->name = $request->name;
+        $product->category_id = $request->category;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;

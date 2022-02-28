@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id()->startingValue(10001);
+            $table->id();
             $table->string('status')->default("PENDING");
             $table->string('user_id');
             $table->timestamps();

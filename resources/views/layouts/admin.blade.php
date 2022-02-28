@@ -50,9 +50,9 @@
     <style>
     
         .select2-container--default .select2-selection--single {
-        background-color: #fff;
-        border-radius: 4px;
-        height: auto;
+            border: 1px solid white;
+            border-radius: 4px;
+            height: auto;
         }
         .modal-backdrop
         {
@@ -62,11 +62,7 @@
             border: 1px solid #111;
             border-radius: 4px;
             color: #111;
-        
-        }
-        .form-control{
-            border: 1px solid #111;
-            color: #111;
+            padding: 0.625rem 0.75rem;
         }
         .receipt-body{
             overflow: auto;
@@ -77,36 +73,21 @@
         font-weight: bold;
         position: absolute;
         }
-        #notification_bell{
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        margin-right: 40px;
-        margin-bottom: 10px; 
-        z-index: 9999;
-        background: #C0C0C0;
-        }
-        .dropdown_list{
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        margin-right: 5px;
-        margin-bottom: 65px; 
-        z-index: 9999;
-        }
-        #click_notif{
-        border-top: solid 1px #c0c0c0;
-        cursor: pointer;
-        }
-        #click_notif:hover{
-        background-color: #8E0E00 !important;
-        color: white;
-        }
- 
         
+        .form-control:focus{
+            border: solid 1px #111 !important;
+        }
+        .form-control{
+            border: solid 1px gray !important;
+            padding: 0.625rem 0.75rem !important; */
+            line-height: 1.3 !important;
+        }
+        .form-control .is-invalid{
+            border: 1px solid red !important;
+            padding: 0.625rem 0.75rem;
+            line-height: 1.3 !important;
+        }
     
-  
-  
     </style>
 </head>
     <body class="g-sidenav-show  bg-gray-200">
