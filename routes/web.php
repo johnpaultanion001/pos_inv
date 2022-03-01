@@ -24,11 +24,6 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.', 'namespace' => 'Custo
     // Home
     Route::get('home', 'HomeController@index')->name('home');
 
-    // //User Update
-    // Route::get('update', 'UserController@updateshow')->name('updateshow');
-    // Route::put('update/{user}', 'UserController@update')->name('update');
-    // Route::put('changepassword/{user}', 'UserController@changepassword')->name('changepassword');
-
     //Add To Cart
     Route::post('addtocart', 'OrderController@addtocart')->name('addtocart');
     Route::get('orders', 'OrderController@orders')->name('orders');

@@ -48,6 +48,7 @@
                                     <th scope="col">CREATED AT</th>
                                 </tr>
                             </thead>
+                            
                             <tbody class="text-uppercase font-weight-bold">
                                 @foreach($products as $product)
                                     <tr>
