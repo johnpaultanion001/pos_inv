@@ -25,7 +25,7 @@
                         <table class="table datatable-table display" width="100%">
                             <thead class="text-uppercase thead-white">
                                 <tr class="text-uppercase">
-                                  <th  scope="col">Actions</th>
+                                  <!-- <th  scope="col">Actions</th> -->
                                   <th  scope="col">STATUS</th>
                                   <th  scope="col">ID</th>
                                   <th  scope="col">NAME</th>
@@ -38,9 +38,9 @@
                             <tbody class="font-weight-bold">
                                 @foreach($customers as $customer)
                                 <tr>
-                                  <td>
+                                  <!-- <td>
                                     <button type="button" name="edit" edit="{{  $customer->id ?? '' }}"  class="edit  btn btn-sm btn-info">Edit Info</button>
-                                  </td>
+                                  </td> -->
                                   <td>
                                     <button type="button" name="status" status="{{  $customer->id ?? '' }}" 
                                     class="status btn btn-sm @if($customer->isApproved == '0') btn-warning @else btn-success @endif">
