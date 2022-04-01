@@ -48,7 +48,7 @@
     @stack('page_css')
 
     <style>
-    
+       
         .select2-container--default .select2-selection--single {
             border: 1px solid white;
             border-radius: 4px;
@@ -59,7 +59,8 @@
             opacity:0.5 !important;
         }
         .select2 {
-            border: 1px solid #111;
+            border: solid 1px gray;
+            
             border-radius: 4px;
             color: #111;
             padding: 0.625rem 0.75rem;

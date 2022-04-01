@@ -235,6 +235,7 @@ $(document).on('click', '#create_record', function(){
     $('#added_section').hide();
     $('#image-section').show();
     $('.disabled').attr('readonly', false);
+    $('#category').attr('disabled', false);
 });
 
 $('#myForm').on('submit', function(event){
@@ -321,6 +322,7 @@ $(document).on('click', '.edit', function(){
     $('.input-group').addClass('is-filled');
     $('.current_img').show();
     $('.disabled').attr('readonly', false);
+    $('#category').attr('disabled', false);
     $('#added_section').hide();
     $('#image-section').show();
     var id = $(this).attr('edit');
@@ -425,6 +427,7 @@ $(document).on('click', '.addstock', function(){
     $('.current_img').show();
     $('#image-section').hide();
     $('#added_section').show();
+    $('#category').attr('disabled', true);
     var id = $(this).attr('addstock');
 
     $.ajax({
@@ -448,6 +451,11 @@ $(document).on('click', '.addstock', function(){
                 }
                 if(key == 'image'){
                     $('#current_image').attr("src", '/assets/img/products/'  + value);
+                }
+                if(key == 'category_id'){
+                    $("#category").select2("trigger", "select", {
+                        data: { id: value }
+                    });
                 }
             })
             $('#hidden_id').val(id);
