@@ -23,8 +23,10 @@
                                     <select name="filter_dd" id="filter_dd" class="select2" style="width: 100%;">
                                         <option value="">FILTER BY DATE</option>
                                         <option value="daily" {{ request()->is('admin/sales_reports/daily') ? 'selected' : '' }}>DAILY</option>
+                                        <option value="weekly" {{ request()->is('admin/sales_reports/weekly') ? 'selected' : '' }}>WEEKLY</option>
                                         <option value="monthly" {{ request()->is('admin/sales_reports/monthly') ? 'selected' : '' }}>MONTHLY</option>
                                         <option value="yearly" {{ request()->is('admin/sales_reports/yearly') ? 'selected' : '' }}>YEARLY</option>
+                                        <option value="all" {{ request()->is('admin/sales_reports/all') ? 'selected' : '' }}>ALL</option>
                                     </select>
                                 </div>
                             </div> 

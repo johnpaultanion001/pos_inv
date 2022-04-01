@@ -63,6 +63,10 @@ class OrderController extends Controller
             $title_filter  = 'From: ' . date('F d, Y') . ' To: ' . date('F d, Y');
             $sales = SalesReport::latest()->whereDate('created_at', Carbon::today())->get();
         }
+        elseif($filter == 'weekly'){
+            $title_filter  = 'From: ' . Carbon::now()->startOfWeek()->format('F d, Y') . ' To: ' . Carbon::now()->endOfWeek()->format('F d, Y');
+            $sales = SalesReport::latest()->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        }
         elseif($filter == 'monthly'){
             $title_filter  = 'From: ' . date('F '. 1 .', Y') . ' To: ' . date('F '. 31 .', Y');
             $sales = SalesReport::latest()->whereMonth('created_at', '=', date('m'))->whereYear('created_at', '=', date('Y'))->get();
