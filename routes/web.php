@@ -53,6 +53,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // receipt
     Route::get('orders/receipt/{order}', 'OrderController@receipt')->name('orders.receipt');
 
+    // Sales Reports
+    Route::get('sales_reports/{filter}', 'OrderController@sales_reports')->name('sales_reports');
+    
+
      // CustomerList
      Route::get('customer_list', 'CustomerListController@index')->name('customer');
      Route::get('customer_list/{user}/edit', 'CustomerListController@edit')->name('customer.edit');

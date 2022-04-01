@@ -50,17 +50,17 @@
                                         <td>
                                          
                                             @foreach($order->orderproducts as $product_order)
-                                                <span class="badge bg-success">{{$product_order->qty}} {{$product_order->product->name}} * {{$product_order->product->price}} = {{$product_order->amount}}</span>
+                                                <span class="badge bg-success">{{$product_order->qty}} {{$product_order->product->name}} * {{$product_order->product->price}} = {{ number_format($product_order->amount ?? '' , 2, '.', ',') }} </span>
                                                 <br>
                                             @endforeach
                                             
                                             
                                         </td>
                                         <td>
-                                            <span class="text-success">₱ </span> {{ $order->orderproducts->sum('amount')}} 
+                                            <span class="text-success">₱ </span> {{ number_format($order->orderproducts->sum('amount') ?? '' , 2, '.', ',') }} 
                                         </td>
                                         <td>
-                                            {{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y / h:i:s A')}}
+                                            {{ $order->created_at->format('M j , Y h:i A') }}
                                         </td>
                                     </tr>
                                 @endforeach

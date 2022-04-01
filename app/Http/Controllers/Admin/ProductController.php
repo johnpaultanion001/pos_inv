@@ -49,6 +49,7 @@ class ProductController extends Controller
             'category' => ['required'],
             'stock' => ['required' ,'integer','min:1'],
             'price' => ['required' ,'numeric','min:1'],
+            'profit' => ['required' ,'numeric','min:0'],
             'image' =>  ['required' , 'mimes:png,jpg,jpeg,svg,bmp,ico', 'max:2040'],
         ]);
 
@@ -65,6 +66,7 @@ class ProductController extends Controller
             'category_id' => $request->input('category'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
+            'profit' => $request->input('profit'),
             'stock' => $request->input('stock'),
             'image' => $file_name_to_save,
         ]);
@@ -113,6 +115,7 @@ class ProductController extends Controller
             'category' => ['required'],
             'stock' => ['required' ,'integer','min:1'],
             'price' => ['required' ,'numeric','min:1'],
+            'profit' => ['required' ,'numeric','min:0'],
             'image' =>  ['mimes:png,jpg,jpeg,svg,bmp,ico', 'max:2040'],
         ]);
 
@@ -133,6 +136,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->category_id = $request->category;
         $product->description = $request->description;
+        $product->profit = $request->profit;
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->save();

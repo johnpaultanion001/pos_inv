@@ -43,6 +43,7 @@
                                     <th scope="col">PRODUCT ID</th>
                                     <th scope="col">NAME</th>
                                     <th scope="col">DESCRIPTION</th>
+                                    <th scope="col">PROFIT</th>
                                     <th scope="col">PRICE</th>
                                     <th scope="col">STOCK</th>
                                     <th scope="col">CREATED AT</th>
@@ -72,6 +73,9 @@
                                         </td>
                                         <td>
                                             {{\Illuminate\Support\Str::limit($product->description,50)}}
+                                        </td>
+                                        <td>
+                                            <span class="text-success">₱</span> {{  number_format($product->profit , 2, '.', ',') }}
                                         </td>
                                         <td>
                                             <span class="text-success">₱</span> {{  number_format($product->price , 2, '.', ',') }}
@@ -104,51 +108,64 @@
                     </button>
         
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body row">
 
-                        <div class="form-group">
-                        
-                            <label class="form-label">Name: <span class="text-danger">*</span></label>
-                            <input type="text" name="name" id="name" class="form-control disabled" >
-                            <span class="invalid-feedback" role="alert">
-                                <strong id="error-name"></strong>
-                            </span>
-                            
-                            
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                
+                                <label class="form-label">Name: <span class="text-danger">*</span></label>
+                                <input type="text" name="name" id="name" class="form-control disabled" >
+                                <span class="invalid-feedback" role="alert">
+                                    <strong id="error-name"></strong>
+                                </span>
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Price: <span class="text-danger">*</span></label>
-                            <input type="number" name="price" id="price" class="form-control disabled">
-                            <span class="invalid-feedback" role="alert">
-                                <strong id="error-price"></strong>
-                            </span>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Description: </label>
+                                <input type="text" name="description" id="description" class="form-control disabled" >
+                                <span class="invalid-feedback" role="alert">
+                                    <strong id="error-description"></strong>
+                                </span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Stock: <span class="text-danger">*</span></label>
-                            <input type="number" name="stock" id="stock" class="form-control disabled">
-                            <span class="invalid-feedback" role="alert">
-                                <strong id="error-stock"></strong>
-                            </span>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Profit: <span class="text-danger">*</span></label>
+                                <input type="number" name="profit" id="profit" class="form-control disabled">
+                                <span class="invalid-feedback" role="alert">
+                                    <strong id="error-profit"></strong>
+                                </span>
+                            </div>
                         </div>
-                            
-                        <div class="form-group">
-                            <label class="form-label">Description: </label>
-                            <input type="text" name="description" id="description" class="form-control disabled" >
-                            <span class="invalid-feedback" role="alert">
-                                <strong id="error-description"></strong>
-                            </span>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Price: <span class="text-danger">*</span></label>
+                                <input type="number" name="price" id="price" class="form-control disabled">
+                                <span class="invalid-feedback" role="alert">
+                                    <strong id="error-price"></strong>
+                                </span>
+                            </div>
                         </div>
-             
-                        <div class="form-group">
-                            <label class="form-label">Category: <span class="text-danger">*</span></label>
-                            <select name="category" id="category" class="select2 form-control" style="width: 100%; ">
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                            </select>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Stock: <span class="text-danger">*</span></label>
+                                <input type="number" name="stock" id="stock" class="form-control disabled">
+                                <span class="invalid-feedback" role="alert">
+                                    <strong id="error-stock"></strong>
+                                </span>
+                            </div>
                         </div>
-
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Category: <span class="text-danger">*</span></label>
+                                <select name="category" id="category" class="select2 form-control" style="width: 100%; ">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group" id="image-section">
                             <label class="form-label">Image: <span class="text-danger">*</span></label>
                             <div class="input-group input-group-outline my-3">
