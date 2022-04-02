@@ -36,7 +36,8 @@
                         <table class="table datatable-table display" width="100%">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>ORDER ID/CUSTOMER</th>
+                                    <th>ORDER ID</th>
+                                    <th>CUSTOMER</th>
                                     <th>PRODUCT</th>
                                     <th>SOLD</th>
                                     <th>PROFIT</th>
@@ -48,7 +49,10 @@
                                 @foreach($sales as $order)
                                         <tr>
                                             <td>
-                                                {{$order->order->id}}/{{$order->order->user->name}}
+                                                {{$order->order->id}}
+                                            </td>
+                                            <td>
+                                                {{$order->order->user->name}}
                                             </td>
                                             <td>
                                                 {{$order->product->name}}
