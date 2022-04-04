@@ -28,7 +28,7 @@
                                 <tr>
                                     <th scope="col">Actions</th>
                                     <th scope="col">NAME</th>
-                                    <th scope="col">PRODUCTS</th>
+                                    <!-- <th scope="col">PRODUCTS</th> -->
                                     <th scope="col">CREATED AT</th>
                                 </tr>
                             </thead>
@@ -44,11 +44,11 @@
                                         <td>
                                             {{  $category->name ?? '' }}
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             @foreach($category->products()->get() as $product)
                                                 <span class="badge bg-success">{{  $product->name ?? '' }}</span>
                                             @endforeach
-                                        </td>
+                                        </td> -->
                                         <td>
                                             {{ $category->created_at->format('M j , Y h:i A') }}
                                         </td>

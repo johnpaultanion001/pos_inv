@@ -21,7 +21,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <select name="filter_dd" id="filter_dd" class="select2" style="width: 100%;">
-                                        <option value="">FILTER BY DATE</option>
+                                        <option value="daily">FILTER BY DATE</option>
                                         <option value="daily" {{ request()->is('admin/sales_reports/daily') ? 'selected' : '' }}>DAILY</option>
                                         <option value="weekly" {{ request()->is('admin/sales_reports/weekly') ? 'selected' : '' }}>WEEKLY</option>
                                         <option value="monthly" {{ request()->is('admin/sales_reports/monthly') ? 'selected' : '' }}>MONTHLY</option>
@@ -79,6 +79,8 @@
                                             <td>
                                             </td>
                                             <td>
+                                            </td>
+                                            <td>
                                                 {{ $sales->sum('sold') }}
                                             </td>
                                             <td>
@@ -108,6 +110,8 @@
 
 @section('script')
 <script> 
+
+
 $(function () {
     let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 
