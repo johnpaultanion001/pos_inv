@@ -19,52 +19,12 @@
        
       </ul>
       <ul class="navbar-nav mx-auto">
-       
-       <li class="nav-item">
-         <a class="nav-link me-2" href="
-            @if (Auth::user()) 
-              /customer/home
-            @else
-              /
-            @endif
-          ">
-           <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
-           Home
-         </a>
-       </li>
-        @if (Auth::user())
-         <li class="nav-item">
-            <a class="nav-link me-2" href="/customer/orders_history">
-              <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-              Order History
-            </a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link me-2" href="/">
-              <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-              Profile
-            </a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link me-2" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-             <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                Logout
-            </a>
-          </li>
-        @else
-            <li class="nav-item">
-              <a class="nav-link me-2" href="/register">
-                <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                Sign Up
-              </a>
-            </li>
             <li class="nav-item">
               <a class="nav-link me-2" href="/login">
                 <i class="fas fa-key opacity-6 text-dark me-1"></i>
                 Sign In
               </a>
             </li>
-        @endif
       </ul>
     </div>
   </div>

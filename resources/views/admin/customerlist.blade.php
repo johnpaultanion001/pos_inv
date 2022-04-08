@@ -52,8 +52,8 @@
                                     </button>
                                   </td>
                                   <td>
-                                    <a href="/assets/img/id/{{$customer->id_image}}" target="_blank">
-                                        <img style="vertical-align: bottom;"  height="100"  width="100" src="{{URL::asset('/assets/img/id/'.$customer->id_image)}}" />
+                                    <a href="http://deli-me-app.supsofttech.com/assets/img/id/{{$customer->id_image}}" target="_blank">
+                                        <img style="vertical-align: bottom;"  height="100"  width="100" src="{{URL::asset('http://deli-me-app.supsofttech.com/assets/img/id/'.$customer->id_image)}}" />
                                     </a>
                                   </td>
                                   <td>

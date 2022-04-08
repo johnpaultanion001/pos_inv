@@ -2,38 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::redirect('/', '/admin/dashboard');
+Route::redirect('/', '/admin/dashboard');
 
-Route::get('/', 'LandingpageController@index')->name('landingpage');
-Route::get('view/{product}', 'LandingpageController@view')->name('view');
-
-
-Route::group(['prefix' => 'customer', 'as' => 'customer.', 'namespace' => 'Customer', 'middleware' => ['auth']], function () {
-    Route::get('/approve', function() {
-           return view('auth.checkapprove');
-         });
- });
-
-
+Route::get('customer', function() {
+     Auth::logout();
+     return redirect('/login');
+  });
 
 Auth::routes();
 
-
-Route::group(['prefix' => 'customer', 'as' => 'customer.', 'namespace' => 'Customer', 'middleware' => ['auth', 'checkapproved']], function () {
-   
-    // Home
-    Route::get('home', 'HomeController@index')->name('home');
-
-    //Add To Cart
-    Route::post('addtocart', 'OrderController@addtocart')->name('addtocart');
-    Route::get('orders', 'OrderController@orders')->name('orders');
-    Route::get('orders_history', 'OrderController@orders_history')->name('orders_history');
-
-    //Check Out
-    Route::post('checkout', 'OrderController@checkout')->name('checkout');
-
-
-});
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     // Dashboard
