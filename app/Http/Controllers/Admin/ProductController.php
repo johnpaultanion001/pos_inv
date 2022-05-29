@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductSizePrice;
 use App\Models\Category;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Validator;
@@ -28,8 +30,9 @@ class ProductController extends Controller
             
             $products = Product::latest()->get();
             $categories = Category::latest()->get();
+            $sizes = Size::latest()->get();
 
-            return view('admin.products', compact('products', 'categories'));
+            return view('admin.products', compact('products', 'categories', 'sizes'));
         }
         return abort('403');
     }
@@ -47,9 +50,6 @@ class ProductController extends Controller
         $validated =  Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'category' => ['required'],
-            'stock' => ['required' ,'integer','min:1'],
-            'price' => ['required' ,'numeric','min:1'],
-            'profit' => ['required' ,'numeric','min:0'],
             'image' =>  ['required' , 'mimes:png,jpg,jpeg,svg,bmp,ico', 'max:2040'],
         ]);
 
@@ -61,15 +61,28 @@ class ProductController extends Controller
         $file_name_to_save = time()."_".".".$extension;
         $imgs->move('assets/img/products/', $file_name_to_save);
 
-        Product::create([
+        $product = Product::create([
             'name' => $request->input('name'),
             'category_id' => $request->input('category'),
             'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'profit' => $request->input('profit'),
-            'stock' => $request->input('stock'),
             'image' => $file_name_to_save,
         ]);
+
+        foreach($request->input('size') as $key => $size )
+        {
+            ProductSizePrice::updateOrCreate(
+                [
+                    'product_id'                => $product->id,
+                    'size_id'                   => $size,
+                ],
+                [
+                    'product_id'                => $product->id,
+                    'size_id'                   => $size,
+                    'price'                     => $request->price[$key],
+                    'stock'                     => $request->stock[$key],
+                ]
+            );
+        }
 
         return response()->json(['success' => 'Product Added Successfully.']);
     }

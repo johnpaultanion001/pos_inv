@@ -14,13 +14,15 @@ class Product extends Model
         'name',
         'category_id',
         'description',
-        'price',
-        'profit',
-        'stock',
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function products_sizes_prices()
+    {
+        return $this->hasMany(ProductSizePrice::class, 'product_id' , 'id');
     }
 }

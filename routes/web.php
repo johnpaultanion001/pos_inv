@@ -2,12 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/admin/dashboard');
-
-Route::get('customer', function() {
-     Auth::logout();
-     return redirect('/login');
-  });
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 

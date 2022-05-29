@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'DELI-ME',
+    'site_title' => 'MILK TEA',
 ];
