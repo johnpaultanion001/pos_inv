@@ -13,17 +13,15 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">{{ trans('panel.site_title') }}</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <p class="lead fw-normal text-white-50 mb-0">LOG IN</p>
         </div>
     </div>
 </header>
 
-<section class="py-5" style="margin-top: -100px;">
+<section class="py-5" style="margin-top: -100px; height: 60vh;">
         <div class="row gx-8 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-10 justify-content-center">
-           
-        <div class="card z-index-0 fadeIn3 fadeInBottom">
+           <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-            
               </div>
               <div class="card-body">
                 <form method="POST" action="{{ route('login') }}">
@@ -43,18 +41,18 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-                      <!-- <div class="form-check form-switch d-flex align-items-center mb-3">
-                        <input class="form-check-input" type="checkbox" id="rememberMe">
-                        <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
-                      </div> -->
                       <div class="text-center">
-                        <button type="submit" class="btn bg-primary w-100 my-4 mb-2">Sign in</button>
+                        <button type="submit" class="btn bg-primary w-100 my-4 mb-2">LOGIN</button>
                       </div>
+                      <p class="mt-4 text-sm text-center">
+                        Not registered?
+                        <a href="/register" class="text-danger font-weight-bold">CREATE ACCOUNT</a> <br> <br>
+                        <a href="/password/reset/">FORGOT PASSWORD?</a>
+                      </p>
+                      
                 </form>
               </div>
-          </div>
-          
-           
+          </div>  
         </div>
 </section>
 @endsection

@@ -106,29 +106,28 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        if (request()->ajax()) {
-            return response()->json(
-                ['result' =>  $product]
+        foreach($product->products_sizes_prices()->get() as $psp){
+            $sps[] = array(
+                'size'         => $psp->size->id,
+                'size_name'         => $psp->size->name,
+                'price'        => $psp->price,
+                'stock'        => $psp->stock, 
+                'sizes'        => $sizes = Size::latest()->get(),
             );
         }
+
+        return response()->json([
+            'result' =>   $product,
+            'sps'    => $sps,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function updateproduct(Request $request, Product $product)
     {
         date_default_timezone_set('Asia/Manila');
         $validated =  Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'category' => ['required'],
-            'stock' => ['required' ,'integer','min:1'],
-            'price' => ['required' ,'numeric','min:1'],
-            'profit' => ['required' ,'numeric','min:0'],
             'image' =>  ['mimes:png,jpg,jpeg,svg,bmp,ico', 'max:2040'],
         ]);
 
@@ -146,12 +145,31 @@ class ProductController extends Controller
             $product->image = $file_name_to_save;
         }
        
+        ProductSizePrice::where('product_id', $product->id)
+                            ->whereNotIn('size_id', $request->input('size'))
+                            ->delete();
+                            
+        foreach($request->input('size') as $key => $size )
+        {
+            ProductSizePrice::updateOrCreate(
+                [
+                    'product_id'                => $product->id,
+                    'size_id'                   => $size,
+                ],
+                [
+                    'product_id'                => $product->id,
+                    'size_id'                   => $size,
+                    'price'                     => $request->price[$key],
+                    'stock'                     => $request->stock[$key],
+                ]
+            );
+        }
+        
+
         $product->name = $request->name;
         $product->category_id = $request->category;
         $product->description = $request->description;
-        $product->profit = $request->profit;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
+  
         $product->save();
 
         return response()->json(['success' => 'Product Updated Successfully.']);

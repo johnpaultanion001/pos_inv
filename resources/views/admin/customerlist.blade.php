@@ -27,7 +27,6 @@
                                 <tr class="text-uppercase">
                                   <!-- <th  scope="col">Actions</th> -->
                                   <th  scope="col">STATUS</th>
-                                  <th  scope="col">ID</th>
                                   <th  scope="col">NAME</th>
                                   <th  scope="col">EMAIL</th>
                                   <th  scope="col">CONTACT NUMBER</th>
@@ -50,11 +49,6 @@
                                         APPROVED
                                     @endif
                                     </button>
-                                  </td>
-                                  <td>
-                                    <a href="http://deli-me-app.supsofttech.com/assets/img/id/{{$customer->id_image}}" target="_blank">
-                                        <img style="vertical-align: bottom;"  height="100"  width="100" src="{{URL::asset('http://deli-me-app.supsofttech.com/assets/img/id/'.$customer->id_image)}}" />
-                                    </a>
                                   </td>
                                   <td>
                                       {{  $customer->name ?? '' }}

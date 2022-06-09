@@ -53,8 +53,8 @@
                                 @foreach($products as $product)
                                     <tr>
                                         <td>
-                                            <button type="button" name="edit" edit="{{  $product->id ?? '' }}"  class="edit btn btn-sm btn-primary">Edit</button>
-                                            <br> <button type="button" name="remove" remove="{{  $product->id ?? '' }}" class="remove btn btn-sm btn-danger">Remove</button>
+                                            <button type="button" name="edit" edit="{{  $product->id ?? '' }}"  class="edit btn btn-sm btn-success btn-wd">Edit</button>
+                                            <br> <button type="button" name="remove" remove="{{  $product->id ?? '' }}" class="remove btn btn-sm btn-danger btn-wd">Remove</button>
                                         </td>
                                         <td>
                                             {{  $product->id ?? '' }}
@@ -102,7 +102,7 @@
     <form method="post" id="myForm" class="contact-form">
         @csrf
         <div class="modal fade" id="formModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group" id="productsSizePrice">
                                 <div class="parentContainer">
                                     <div class="row childrenContainer">
                                         <div class="col-sm-12 row">
@@ -237,7 +237,7 @@
     $('.select2').select2();
 
     $('#category_dd').on('change', function () {
-      table.columns(2).search( this.value ).draw();
+      table.columns(3).search( this.value ).draw();
     });
 
     });
@@ -368,6 +368,47 @@ $(document).on('click', '.edit', function(){
                 if(key == 'image'){
                     $('#current_image').attr("src", '/assets/img/products/'  + value);
                 }
+                
+                var sps = "";
+                 $.each(data.sps, function(key,value){
+                    sps += '<div class="parentContainer">';
+                    sps += '<div class="row childrenContainer">';
+                    sps += '<div class="col-sm-12 row">';
+                        sps += '<div class="col-sm-3">';
+                            sps += '<label class="form-label">Size: <span class="text-danger">*</span></label>';
+                            sps += '<select name="size[]" id="size"  style="width: 100%; height: 45px;" required>';
+                                sps += '<option value="'+value.size+'">'+value.size_name+'</option>';
+                            $.each(value.sizes, function(key,val){
+                                sps += '<option value="'+val.id+'">'+val.name+'</option>';
+                            });
+                            sps += '</select>';
+                        sps += '</div>';
+                        sps += '<div class="col-sm-3">';
+                            sps += '<label class="form-label">Price: <span class="text-danger">*</span></label>';
+                            sps += '<input type="number" name="price[]" id="price" class="form-control" value="'+value.price+'" required>';
+                        sps += '</div>';
+                        sps += '<div class="col-sm-3">';
+                            sps += '<label class="form-label">Stock: <span class="text-danger">*</span></label>';
+                            sps += '<input type="number" name="stock[]" id="stock" class="form-control" value="'+value.stock+'" required>';
+                        sps += '</div>';
+                        sps += '<div class="col-sm-3">';
+                            sps += '<br>';
+                            if (key === 0) {
+                                sps += '<button type="button" name="addParent" id="addParent" class="mt-2 addParent btn btn-primary">';
+                                    sps += '<i class="fas fa-plus-circle"></i>';
+                                sps += '</button>';
+                            }else{
+                                sps += '<button type="button" class="btn btn-danger removeParent">';
+                                        sps += '<i class="fa fa-minus-circle" aria-hidden="true"></i>';
+                                sps += '</button>';
+                            }
+                        sps += '</div>';
+                    sps += '</div>';
+                    sps += '</div>';
+                    sps += '</div>';
+              })
+              $('#productsSizePrice').empty().append(sps);
+
             })
             $('#hidden_id').val(id);
             $('#action_button').val('Update');
@@ -452,11 +493,11 @@ $(document).on('click', '.addParent', function () {
             html += '</div>';
 
             html += '<div class="col-sm-3">';
-                html += '<input type="number" name="price[]" id="price" class="form-control">';
+                html += '<input type="number" name="price[]" id="price" class="form-control" required>';
             html += '</div>';
 
             html += '<div class="col-sm-3">';
-                html += '<input type="number" name="stock[]" id="stock" class="form-control">';
+                html += '<input type="number" name="stock[]" id="stock" class="form-control" required>';
             html += '</div>';
             
             html += '<div class="col-sm-3">';
