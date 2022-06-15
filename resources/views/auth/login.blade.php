@@ -45,7 +45,7 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
                         <button type="submit" class="btn bg-primary w-100 my-4 mb-2">LOGIN</button>
                       </div>
                       <p class="mt-4 text-sm text-center">
-                        Not registered?
+                        Not register?
                         <a href="/register" class="text-danger font-weight-bold">CREATE ACCOUNT</a> <br> <br>
                         <a href="/password/reset/">FORGOT PASSWORD?</a>
                       </p>

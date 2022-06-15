@@ -45,7 +45,6 @@ class RegisterController extends Controller
             'contact_number' => ['required', 'string', 'min:8','max:11','unique:users'],
             'address' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'upload_id' =>  ['required' , 'mimes:png,jpg,jpeg,svg,bmp,ico', 'max:2040'],
         ]);
     }
 
@@ -57,17 +56,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $id = $data['upload_id'];
-        $extension = $id->getClientOriginalExtension(); 
-        $file_name_to_save = time().".".$extension;
-        $id->move('assets/img/id/', $file_name_to_save);
-
+        
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'contact_number' => $data['contact_number'],
             'address' => $data['address'],
-            'id_image' => $file_name_to_save,
             'password' => Hash::make($data['password']),
         ]);
 

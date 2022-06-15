@@ -14,16 +14,16 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        $orders = [
-            [
-                'status'          => 'APPROVED',
-                'user_id'         => '2',
-                'created_at'      => date("Y-m-d H:i:s"),
-                'updated_at'      => date("Y-m-d H:i:s"),
-            ],
+        // $orders = [
+        //     [
+        //         'status'          => 'APPROVED',
+        //         'user_id'         => '2',
+        //         'created_at'      => date("Y-m-d H:i:s"),
+        //         'updated_at'      => date("Y-m-d H:i:s"),
+        //     ],
             
-        ];
+        // ];
 
-        Order::insert($orders);
+        // Order::insert($orders);
     }
 }

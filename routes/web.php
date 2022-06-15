@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/product/filter', 'HomeController@filter')->name('filter');
+
 
 Auth::routes();
-
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     // Dashboard
@@ -45,4 +47,28 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     
      // Categories
      Route::resource('categories', 'CategoryController');
+});
+
+
+Route::group(['prefix' => 'customer', 'as' => 'customer.', 'namespace' => 'Customer', 'middleware' => ['auth']], function () {
+    
+    // ORDERS
+    Route::get('product/{product}', 'OrderController@view')->name('product.view');
+    Route::post('product/{product}', 'OrderController@order')->name('product.order');
+    Route::get('orders', 'OrderController@orders')->name('orders.index');
+    Route::get('orders/{order}/edit', 'OrderController@edit')->name('order.edit');
+    Route::put('orders/{order}', 'OrderController@update')->name('order.update');
+    Route::delete('orders/{order}', 'OrderController@cancel')->name('order.cancel');
+    Route::get('orders/checkout', 'OrderController@checkout')->name('order.checkout');
+
+    // ORDER HISTORY
+    Route::get('orders_history', 'OrderController@orders_history')->name('orders.history');
+    Route::post('orders/cancel/{order}', 'OrderController@cancel_order')->name('orders.cancel');
+
+    // ACCOUNT
+    Route::get('account', 'HomeController@account')->name('account');
+    Route::put('account', 'HomeController@account_update')->name('account.update');
+    Route::put('account/change_password/{user}', 'HomeController@passwordupdate')->name('account.passwordupdate');
+
+   
 });
