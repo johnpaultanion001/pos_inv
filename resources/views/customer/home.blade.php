@@ -13,54 +13,57 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">{{ trans('panel.site_title') }}</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Lorem ipsum ipsum ipsum</p>
+            <p class="lead fw-normal text-white-50 mb-0">All Products</p>
         </div>
     </div>
 </header>
 
-<section class="py-5">
-
-    <div class="container px-4 px-lg-5 ">
-            <div class="row">
-                <div class="col-6">
-                    <input type="text" id="search-bar" placeholder="Find a product?">
-                    <img class="search-icon" src="{{URL::asset('/assets/img/search-icon.png')}}">
-                </div>
-                <div class="col-6">
-                    <select name="filter_category" id="filter_category" style="height: 44px; width: 100%; ">
-                        <option value="">Filter Category</option>
-                        @foreach($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name ?? ''}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="product_list">
-            @foreach($products as $product)
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <div class="badge bg-dark text-white position-absolute text-uppercase" style="top: 0.5rem; right: 0.5rem">{{$product->category->name ?? ''}}</div>
-                        <!-- Product image-->
-                        <img class="card-img-top" width="200" height="190" src="/assets/img/products/{{$product->image ?? ''}}" alt="{{$product->image ?? ''}}" />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">{{$product->name ?? ''}}</h5>
-                                <!-- Product price-->
-                                @foreach($product->products_sizes_prices()->get() as $product_size)
-                                {{$product_size->size->name ?? ''}} ₱{{$product_size->price ?? ''}}
-                                @endforeach
-                                
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><button class="btn btn-outline-primary mt-auto order" product_id="{{$product->id}}">ORDER</button></div>
-                        </div>
+<section class="py-5" style="margin-top: -120px; min-height: 60vh;">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="text" id="search-bar" placeholder="Find a product?">
+                        <img class="search-icon" src="{{URL::asset('/assets/img/search-icon.png')}}">
+                    </div>
+                    <div class="col-6">
+                        <select name="filter_category" id="filter_category" style="height: 44px; width: 100%; ">
+                            <option value="">Filter Category</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name ?? ''}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-            @endforeach
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="product_list">
+                    @foreach($products as $product)
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <div class="badge bg-dark text-white position-absolute text-uppercase" style="top: 0.5rem; right: 0.5rem">{{$product->category->name ?? ''}}</div>
+                                <!-- Product image-->
+                                <img class="card-img-top" width="200" height="190" src="/assets/img/products/{{$product->image ?? ''}}" alt="{{$product->image ?? ''}}" />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">{{$product->name ?? ''}}</h5>
+                                        <!-- Product price-->
+                                        @foreach($product->products_sizes_prices()->get() as $product_size)
+                                        {{$product_size->size->name ?? ''}} ₱{{$product_size->price ?? ''}}
+                                        @endforeach
+                                        
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><button class="btn btn-outline-primary mt-auto order" product_id="{{$product->id}}">ORDER</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
     

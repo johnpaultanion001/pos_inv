@@ -70,7 +70,7 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
                                         <div class="form-group">
                                             <select name="shipping_option" id="shipping_option" class="form-control">
                                                 <option value="pickUp">Pick Up</option>
-                                                <option value="deliver">Deliver (depending on the address, additional fees required)</option>
+                                                <option value="deliver">Deliver (Additional fees required)</option>
                                             </select>
                                         </div>
                                     </div>

@@ -16,11 +16,6 @@ use File;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
  
     public function index()
     {
@@ -37,13 +32,6 @@ class ProductController extends Controller
         return abort('403');
     }
    
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         date_default_timezone_set('Asia/Manila');
@@ -87,23 +75,7 @@ class ProductController extends Controller
         return response()->json(['success' => 'Product Added Successfully.']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit(Product $product)
     {
         foreach($product->products_sizes_prices()->get() as $psp){
@@ -174,24 +146,8 @@ class ProductController extends Controller
 
         return response()->json(['success' => 'Product Updated Successfully.']);
     }
-    public function addedstock(Request $request, Product $product){
-        date_default_timezone_set('Asia/Manila');
-        $validated =  Validator::make($request->all(), [
-           'added_stock' => ['required' ,'integer','min:1'],
-        ]);
-
-        if ($validated->fails()) {
-            return response()->json(['errors' => $validated->errors()]);
-        }
-        Product::where('id',$product->id)->increment('stock',  $request->added_stock);
-        return response()->json(['success' => 'Product Updated Successfully.']);
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+  
+  
     public function destroy(Product $product)
     {
         File::delete(public_path('assets/img/products/'.$product->image));

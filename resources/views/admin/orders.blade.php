@@ -23,9 +23,9 @@
                         <table class="table datatable-table display" cellspacing="0" width="100%">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">ACTIONS</th>
                                     <th scope="col">STATUS</th>
                                     <th scope="col">ORDER ID</th>
+                                    <th scope="col">SHIPPING OPTION</th>
                                     <th scope="col">CUSTOMER NAME</th>
                                     <th scope="col">PRODUCT BUY</th>
                                     <th scope="col">AMOUNT</th>
@@ -35,14 +35,25 @@
                             <tbody class="text-uppercase font-weight-bold">
                                 @foreach($orders as $order)
                                     <tr>
+                                       
                                         <td>
-                                            <button type="button" name="receipt" receipt="{{  $order->id ?? '' }}" class="receipt btn btn-sm btn-info">Receipt</button>
-                                        </td>
-                                        <td>
-                                            <button type="button" name="status" status="{{  $order->id ?? '' }}" class="status btn btn-sm @if($order->status == 'PENDING') btn-warning @else btn-success @endif">{{$order->status}}</button>
+                                            <button type="button" name="status" status="{{  $order->id ?? '' }}" 
+                                                class="btn btn-sm 
+                                                @if($order->status == 'PENDING')
+                                                    btn-warning status
+                                                @elseif($order->status == 'APPROVED')
+                                                    btn-success status
+                                                @else 
+                                                    btn-danger
+                                                @endif">
+                                                {{$order->status}}
+                                            </button>
                                         </td>
                                         <td>
                                             {{  $order->id ?? '' }}
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-primary">{{  $order->shipping_option ?? '' }}</span>
                                         </td>
                                         <td>
                                             {{  $order->user->name ?? '' }}
@@ -50,7 +61,7 @@
                                         <td>
                                          
                                             @foreach($order->orderproducts as $product_order)
-                                                <span class="badge bg-success">{{$product_order->qty}} {{$product_order->product->name}} * {{$product_order->product->price}} = {{ number_format($product_order->amount ?? '' , 2, '.', ',') }} </span>
+                                                <span class="badge bg-success">{{$product_order->qty}} {{$product_order->product->name}} * {{$product_order->price}} = {{ number_format($product_order->amount ?? '' , 2, '.', ',') }} </span>
                                                 <br>
                                             @endforeach
                                             
@@ -154,53 +165,7 @@ $(document).on('click', '.status', function(){
     })
 });
 
-$(document).on('click', '.receipt', function(){
-    var id = $(this).attr('receipt');
-    $('#receiptModal').modal('show');
 
-    $.ajax({
-        url :"/admin/orders/receipt/"+id,
-        type: "get",
-        dataType: "HTMl",
-        beforeSend: function() {
-            $('.modal-title-receipt').text('Loading Records...');
-        },
-        success: function(response){
-            $('.modal-title-receipt').text('Receipt');
-            $("#receipt_data").html(response);
-        }	
-    })
-
-});
-
-$(document).on('click', '#btn_print', function(){
-    var contents = $("#receipt_data").html();
-    var frame1 = $('<iframe />');
-    frame1[0].name = "frame1";
-    frame1.css({ "position": "absolute", "top": "-1000000px" });
-    $("body").append(frame1);
-    var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
-    frameDoc.document.open();
-    //Create a new HTML document.
-    frameDoc.document.write('<html><head><title>Title</title>');
-    frameDoc.document.write('</head><body>');
-    //Append the external CSS file. 
-    frameDoc.document.write('<link href="/admin/css/material-dashboard.css" rel="stylesheet" type="text/css" />');
-    frameDoc.document.write('<style>size: A5 portrait;</style>');
-    var source = 'bootstrap.min.js';
-    var script = document.createElement('script');
-    script.setAttribute('type', 'text/javascript');
-    script.setAttribute('src', source);
-    //Append the DIV contents.
-    frameDoc.document.write(contents);
-    frameDoc.document.write('</body></html>');
-    frameDoc.document.close();
-    setTimeout(function () {
-    window.frames["frame1"].focus();
-    window.frames["frame1"].print();
-    frame1.remove();
-    }, 500);
-});
 </script>
 @endsection
 
