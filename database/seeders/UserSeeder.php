@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             [
                 'id'             => 1,
                 'name'           => 'Admin',
-                'email'          => 'admin@admin.com',
+                'email'          => 'admin@gmail.com',
                 'password'       => '$2y$10$zPiaTbYwkxYcejFmEimhWedeAogTJvEb/yGmBVx390ihhPFy8r896' ,//password
                 'contact_number'  => null,
                 'address'  => null,
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             [
                 'id'             => 2,
                 'name'           => 'Sample Customer',
-                'email'          => 'user@user.com',
+                'email'          => 'customer@gmail.com',
                 'password'       => '$2y$10$zPiaTbYwkxYcejFmEimhWedeAogTJvEb/yGmBVx390ihhPFy8r896',//password
                 'contact_number'  => '09776668820',
                 'address'  => 'ANTIPOLO CITY',
