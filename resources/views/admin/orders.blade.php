@@ -23,10 +23,9 @@
                         <table class="table datatable-table display" cellspacing="0" width="100%">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">STATUS</th>
                                     <th scope="col">ORDER ID</th>
-                                    <th scope="col">SHIPPING OPTION</th>
-                                    <th scope="col">CUSTOMER NAME</th>
+                                    <th scope="col">CUSTOMER</th>
+                                    <th scope="col">ACCT NAME</th>
                                     <th scope="col">PRODUCT BUY</th>
                                     <th scope="col">AMOUNT</th>
                                     <th scope="col">ORDER AT</th>
@@ -37,23 +36,10 @@
                                     <tr>
                                        
                                         <td>
-                                            <button type="button" name="status" status="{{  $order->id ?? '' }}" 
-                                                class="btn btn-sm 
-                                                @if($order->status == 'PENDING')
-                                                    btn-warning status
-                                                @elseif($order->status == 'APPROVED')
-                                                    btn-success status
-                                                @else 
-                                                    btn-danger
-                                                @endif">
-                                                {{$order->status}}
-                                            </button>
-                                        </td>
-                                        <td>
                                             {{  $order->id ?? '' }}
                                         </td>
                                         <td>
-                                            <span class="badge bg-primary">{{  $order->shipping_option ?? '' }}</span>
+                                            <span class="badge bg-primary">{{  $order->customer ?? '' }}</span>
                                         </td>
                                         <td>
                                             {{  $order->user->name ?? '' }}
@@ -61,7 +47,7 @@
                                         <td>
                                          
                                             @foreach($order->orderproducts as $product_order)
-                                                <span class="badge bg-success">{{$product_order->qty}} {{$product_order->product->name}} * {{$product_order->price}} = {{ number_format($product_order->amount ?? '' , 2, '.', ',') }} </span>
+                                                <span class="badge bg-success">{{$product_order->qty ?? ''}} {{$product_order->product->name ?? ''}} * {{$product_order->price ?? ''}} = {{ number_format($product_order->amount ?? '' , 2, '.', ',') }} </span>
                                                 <br>
                                             @endforeach
                                             
@@ -82,32 +68,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="receiptModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title-receipt">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fas fa-times text-primary"></i>
-                    </button>
-        
-                    </div>
-                    <div class="modal-body">
-                        <div id="receipt_data">
-
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer">
-                       
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                        <button type="button" class="btn btn-primary" id="btn_print">Print</button>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
 
     @section('footer')
         @include('../partials.admin.footer')
@@ -130,42 +90,6 @@
                 .columns.adjust();
             });
     });
-
-$(document).on('click', '.status', function(){
-    
-    var id = $(this).attr('status');
-    $.ajax({
-        url :"/admin/orders/status/"+id,
-        dataType:"json",
-        method: 'put',
-        data: { _token: '{!! csrf_token() !!}'},
-        beforeSend:function(){
-          
-        },
-        success:function(data){
-            if(data.success){
-                $.confirm({
-                title: 'Confirmation',
-                content: data.success,
-                type: 'green',
-                buttons: {
-                        confirm: {
-                            text: 'confirm',
-                            btnClass: 'btn-blue',
-                            keys: ['enter', 'shift'],
-                            action: function(){
-                                location.reload();
-                            }
-                        },
-                        
-                    }
-                });
-            }
-        }
-    })
-});
-
-
 </script>
 @endsection
 

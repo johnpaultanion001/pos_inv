@@ -5,10 +5,9 @@
 
 @section('content')
 <header class="py-2" style="
-background: #FBD3E9;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #BB377D, #FBD3E9);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 ">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
@@ -56,23 +55,20 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
                             <hr>
                                 <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2 pt-0">
                                     <div class="d-flex align-items-start flex-column justify-content-center">
-                                        <h6 class="mb-0">SUBTOTAL</h6>
+                                        <h6 class="mb-0">CUSTOMER</h6>
                                     </div>
                                     <div class="ms-auto text-primary">
-                                        ₱ {{ number_format($orders->sum->amount ?? '' , 2, '.', ',') }}
+                                        <div class="form-group">
+                                            <input type="text" name="customer" id="customer" class="form-control" value="Walk In">
+                                        </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2 pt-0">
                                     <div class="d-flex align-items-start flex-column justify-content-center">
-                                        <h6 class="mb-0">SHIPPING OPTIONS</h6>
+                                        <h6 class="mb-0">SUBTOTAL</h6>
                                     </div>
                                     <div class="ms-auto text-primary">
-                                        <div class="form-group">
-                                            <select name="shipping_option" id="shipping_option" class="form-control">
-                                                <option value="pickUp">Pick Up</option>
-                                                <option value="deliver">Deliver (Additional fees required)</option>
-                                            </select>
-                                        </div>
+                                        ₱ {{ number_format($orders->sum->amount ?? '' , 2, '.', ',') }}
                                     </div>
                                 </li>
                                 <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2 pt-0">
@@ -322,7 +318,7 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
                             dataType:"json",
                             method:"get",
                             data: {
-                                        _token: '{!! csrf_token() !!}', shipping:$('#shipping_option').val()
+                                        _token: '{!! csrf_token() !!}', customer:$('#customer').val()
                                 },
                             beforeSend:function(){
                                 $("#checkout").attr("disabled",true);

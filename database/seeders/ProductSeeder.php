@@ -18,8 +18,8 @@ class ProductSeeder extends Seeder
         $products = [
             [   
                 'id'              => '1',
-                'image'           => 'WINTERMELON.jpg',
-                'name'            => 'WINTERMELON',
+                'image'           => 'plate.jpg',
+                'name'            => 'Sample Product',
                 'category_id'     => '1',
                 'description'     => 'Sample Product',
                
@@ -28,8 +28,8 @@ class ProductSeeder extends Seeder
             ],
             [   
                 'id'              => '2',
-                'image'           => 'OKINAWA.jpg',
-                'name'            => 'OKINAWA',
+                'image'           => 'plate.jpg',
+                'name'            => 'Sample Product',
                 'category_id'     => '1',
                 'description'     => 'Sample Product',
                
@@ -38,8 +38,8 @@ class ProductSeeder extends Seeder
             ],
             [   
                 'id'              => '3',
-                'image'           => 'HOKKAIDO.jpg',
-                'name'            => 'HOKKAIDO',
+                'image'           => 'plate.jpg',
+                'name'            => 'Sample Product',
                 'category_id'     => '1',
                 'description'     => 'Sample Product',
                
@@ -48,8 +48,8 @@ class ProductSeeder extends Seeder
             ],
             [   
                 'id'              => '4',
-                'image'           => 'MATCHA.jpg',
-                'name'            => 'MATCHA',
+                'image'           => 'plate.jpg',
+                'name'            => 'Sample Product',
                 'category_id'     => '1',
                 'description'     => 'Sample Product',
                
@@ -58,8 +58,8 @@ class ProductSeeder extends Seeder
             ],
             [   
                 'id'              => '5',
-                'image'           => 'CHOCOLATE.jpg',
-                'name'            => 'CHOCOLATE ',
+                'image'           => 'plate.jpg',
+                'name'            => 'Sample Product ',
                 'category_id'     => '1',
                 'description'     => 'Sample Product',
                
@@ -68,8 +68,8 @@ class ProductSeeder extends Seeder
             ],
             [   
                 'id'              => '6',
-                'image'           => 'DARK BEL CHOCO.jpg',
-                'name'            => 'DARK BEL CHOCO',
+                'image'           => 'plate.jpg',
+                'name'            => 'Sample Product',
                 'category_id'     => '1',
                 'description'     => 'Sample Product',
                
@@ -78,8 +78,8 @@ class ProductSeeder extends Seeder
             ],
             [   
                 'id'              => '7',
-                'image'           => 'CARAMEL SUGAR.jpg',
-                'name'            => 'CARAMEL SUGAR',
+                'image'           => 'plate.jpg',
+                'name'            => 'Sample Product',
                 'category_id'     => '1',
                 'description'     => 'Sample Product',
                
@@ -88,8 +88,8 @@ class ProductSeeder extends Seeder
             ],
             [   
                 'id'              => '8',
-                'image'           => 'SALTED CARAMEL.jpg',
-                'name'            => 'SALTED CARAMEL',
+                'image'           => 'plate.jpg',
+                'name'            => 'Sample Product',
                 'category_id'     => '1',
                 'description'     => 'Sample Product',
                
@@ -103,8 +103,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '1',
                 'size_id'           => '1',
-                'price'           => '50',
-                'stock'           => '50',
+                'price'           => '210',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -112,8 +112,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '1',
                 'size_id'           => '2',
-                'price'           => '70',
-                'stock'           => '50',
+                'price'           => '240',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -121,8 +121,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '1',
                 'size_id'           => '3',
-                'price'           => '50',
-                'stock'           => '90',
+                'price'           => '310',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -131,8 +131,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '2',
                 'size_id'           => '1',
-                'price'           => '50',
-                'stock'           => '50',
+                'price'           => '210',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -140,8 +140,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '2',
                 'size_id'           => '2',
-                'price'           => '70',
-                'stock'           => '50',
+                'price'           => '240',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -149,8 +149,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '2',
                 'size_id'           => '3',
-                'price'           => '50',
-                'stock'           => '90',
+                'price'           => '310',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -159,8 +159,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '3',
                 'size_id'           => '1',
-                'price'           => '50',
-                'stock'           => '50',
+                'price'           => '210',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -168,8 +168,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '3',
                 'size_id'           => '2',
-                'price'           => '70',
-                'stock'           => '50',
+                'price'           => '240',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -177,8 +177,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '3',
                 'size_id'           => '3',
-                'price'           => '50',
-                'stock'           => '90',
+                'price'           => '310',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -187,8 +187,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '4',
                 'size_id'           => '1',
-                'price'           => '50',
-                'stock'           => '50',
+                'price'           => '210',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -196,8 +196,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '4',
                 'size_id'           => '2',
-                'price'           => '70',
-                'stock'           => '50',
+                'price'           => '240',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -205,8 +205,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '4',
                 'size_id'           => '3',
-                'price'           => '50',
-                'stock'           => '90',
+                'price'           => '310',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -215,8 +215,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '5',
                 'size_id'           => '1',
-                'price'           => '50',
-                'stock'           => '50',
+                'price'           => '210',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -224,8 +224,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '5',
                 'size_id'           => '2',
-                'price'           => '70',
-                'stock'           => '50',
+                'price'           => '240',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -233,8 +233,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '5',
                 'size_id'           => '3',
-                'price'           => '50',
-                'stock'           => '90',
+                'price'           => '310',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -243,8 +243,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '6',
                 'size_id'           => '1',
-                'price'           => '50',
-                'stock'           => '50',
+                'price'           => '210',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -252,8 +252,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '6',
                 'size_id'           => '2',
-                'price'           => '70',
-                'stock'           => '50',
+                'price'           => '240',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -261,8 +261,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '6',
                 'size_id'           => '3',
-                'price'           => '50',
-                'stock'           => '90',
+                'price'           => '310',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -271,8 +271,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '7',
                 'size_id'           => '1',
-                'price'           => '50',
-                'stock'           => '50',
+                'price'           => '210',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -280,8 +280,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '7',
                 'size_id'           => '2',
-                'price'           => '70',
-                'stock'           => '50',
+                'price'           => '240',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -289,8 +289,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '7',
                 'size_id'           => '3',
-                'price'           => '50',
-                'stock'           => '90',
+                'price'           => '310',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -299,8 +299,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '8',
                 'size_id'           => '1',
-                'price'           => '50',
-                'stock'           => '50',
+                'price'           => '210',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -308,8 +308,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '8',
                 'size_id'           => '2',
-                'price'           => '70',
-                'stock'           => '50',
+                'price'           => '240',
+                'stock'            => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
@@ -317,8 +317,8 @@ class ProductSeeder extends Seeder
             [
                 'product_id'           => '8',
                 'size_id'           => '3',
-                'price'           => '50',
-                'stock'           => '90',
+                'price'           => '310',
+                'stock'           => '200',
                
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),

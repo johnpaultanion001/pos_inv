@@ -22,22 +22,41 @@ class OrderController extends Controller
         return abort('403');
     }
 
-    public function status(Order $order){
+    public function sales_reports($filter){
 
-        if($order->status == "PENDING"){
-            Order::find($order->id)->update([
-                'status'    => 'APPROVED',
-            ]);
+        $userrole = auth()->user()->role;
+
+        if($filter == 'daily'){
+            $title_filter  = 'From: ' . date('F d, Y') . ' To: ' . date('F d, Y');
+            $sales = OrderProduct::latest()->whereDate('created_at', Carbon::today())
+                                ->where('isCheckout', true)->get();
+        }
+        elseif($filter == 'weekly'){
+            $title_filter  = 'From: ' . Carbon::now()->startOfWeek()->format('F d, Y') . ' To: ' . Carbon::now()->endOfWeek()->format('F d, Y');
+            $sales = OrderProduct::latest()->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+                                    ->where('isCheckout', true)->get();
+        }
+        elseif($filter == 'monthly'){
+            $title_filter  = 'From: ' . date('F '. 1 .', Y') . ' To: ' . date('F '. 31 .', Y');
+            $sales = OrderProduct::latest()->whereMonth('created_at', '=', date('m'))->whereYear('created_at', '=', date('Y'))
+                                    ->where('isCheckout', true)->get();
+        }
+        elseif($filter == 'yearly'){
+            $title_filter  = 'From: ' .'Jan 1'. date(', Y') . ' To: ' .'Dec 31'. date(', Y');
+            $sales = OrderProduct::latest()->whereYear('created_at', '=', date('Y'))
+                                    ->where('isCheckout', true)->get();
+        }
+        elseif($filter == 'all'){
+            $title_filter  = 'ALL RECORDS';
+            $sales = OrderProduct::latest()->where('isCheckout', true)->get();
+        }else{
+            $title_filter  = 'From: ' . date('F d, Y') . ' To: ' . date('F d, Y');
+            $sales = OrderProduct::latest()->whereDate('created_at', Carbon::today())
+                                    ->where('isCheckout', true)->get();
         }
 
-        if($order->status == "APPROVED"){
-            Order::find($order->id)->update([
-                'status'    => 'PENDING',
-            ]);
-        }
-
-        return response()->json(['success' => 'Updated Successfully.']);
-
+        return view('admin.sales_reports.sales_reports', compact('sales','title_filter'));
+       
     }
     
 }

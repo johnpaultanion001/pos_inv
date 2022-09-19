@@ -44,12 +44,30 @@
           <span class="nav-link-text ms-1 text-uppercase">Categories</span>
         </a>
       </li>
+      
+      <li class="nav-item">
+        <a class="nav-link text-white {{ request()->is('admin/sales_reports') || request()->is('admin/sales_reports/*') ? 'bg-gradient-primary' : '' }}" href="/admin/sales_reports/daily">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-list" style="font-size: 17px"></i>
+          </div>
+          <span class="nav-link-text ms-1 text-uppercase">Sales Reports</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white {{ request()->is('admin/customer_list') || request()->is('admin/customer_list/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.customer") }}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            
+            <i class="fas fa-users "></i>
+          </div>
+          <span class="nav-link-text ms-1 text-uppercase">Employees</span>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link text-white {{ request()->is('admin/customer_list') || request()->is('admin/customer_list/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.customer") }}">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="material-icons opacity-10">person</i>
           </div>
-          <span class="nav-link-text ms-1 text-uppercase">Customers</span>
+          <span class="nav-link-text ms-1 text-uppercase">Accounts</span>
         </a>
       </li>
   

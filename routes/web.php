@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/product/filter', 'HomeController@filter')->name('filter');
-
+Route::get('/', function () {
+    return redirect()->route('admin.dashboard');
+});
 
 Auth::routes();
 
@@ -20,12 +19,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Orders
     Route::get('orders', 'OrderController@orders')->name('orders');
-
-    // Change Status
-    Route::put('orders/status/{order}', 'OrderController@status')->name('orders.status');
-
-    // receipt
-    Route::get('orders/receipt/{order}', 'OrderController@receipt')->name('orders.receipt');
 
     // Sales Reports
     Route::get('sales_reports/{filter}', 'OrderController@sales_reports')->name('sales_reports');
@@ -70,5 +63,7 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.', 'namespace' => 'Custo
     Route::put('account', 'HomeController@account_update')->name('account.update');
     Route::put('account/change_password/{user}', 'HomeController@passwordupdate')->name('account.passwordupdate');
 
-   
+    
+    Route::get('/products/filter', 'HomeController@filter')->name('filter');
+    Route::get('/products', 'HomeController@index')->name('products');
 });

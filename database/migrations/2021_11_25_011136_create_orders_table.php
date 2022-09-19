@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('status')->default("PENDING");
             $table->string('user_id');
-            $table->string('shipping_option');
+            $table->string('customer')->nullable();
             $table->timestamps();
         });
     }

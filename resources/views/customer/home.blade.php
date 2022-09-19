@@ -5,10 +5,9 @@
 
 @section('content')
 <header class="py-5" style="
-background: #FBD3E9;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #BB377D, #FBD3E9);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 ">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
@@ -40,7 +39,7 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
                     @foreach($products as $product)
                         <div class="col mb-5">
                             <div class="card h-100">
-                                <div class="badge bg-dark text-white position-absolute text-uppercase" style="top: 0.5rem; right: 0.5rem">{{$product->category->name ?? ''}}</div>
+                                <div class="badge bg-primary text-white position-absolute text-uppercase" style="top: 0.5rem; right: 0.5rem">{{$product->category->name ?? ''}}</div>
                                 <!-- Product image-->
                                 <img class="card-img-top" width="200" height="190" src="/assets/img/products/{{$product->image ?? ''}}" alt="{{$product->image ?? ''}}" />
                                 <!-- Product details-->
@@ -57,7 +56,7 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><button class="btn btn-outline-primary mt-auto order" product_id="{{$product->id}}">ORDER</button></div>
+                                    <div class="text-center"><button class="btn btn-primary mt-auto order" product_id="{{$product->id}}">ORDER</button></div>
                                 </div>
                             </div>
                         </div>
@@ -248,7 +247,7 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
         var value = this.value;
 
         $.ajax({
-        url: "/product/filter", 
+        url: "/customer/products/filter", 
         type: "get",
         dataType:"json",
         data: {
@@ -289,7 +288,7 @@ background: linear-gradient(to right, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, F
         var value = this.value;
 
         $.ajax({
-        url: "/product/filter", 
+        url: "/customer/products/filter", 
         type: "get",
         dataType:"json",
         data: {

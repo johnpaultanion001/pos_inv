@@ -41,7 +41,8 @@ class HomeController extends Controller
             $orders_today = Order::whereDay('created_at', '=', date('d'))->get();
 
             return view('admin.home', compact('products','products_today','customers','customers_today', 'orders','orders_today'));
+        }else{
+            return redirect()->route('customer.products');
         }
-        return abort('403');
     }
 }

@@ -16,12 +16,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            [
-                'name'              => 'Milk Tea',
-                
-                'created_at'          => date("Y-m-d H:i:s"),
-                'updated_at'          => date("Y-m-d H:i:s"),
-            ],
+          
             [
                 'name'             => 'Food',
                 
@@ -33,7 +28,7 @@ class CategorySeeder extends Seeder
 
         $sizes = [
             [
-                'name'              => 'M',
+                'name'              => 'R',
                 
                 'created_at'          => date("Y-m-d H:i:s"),
                 'updated_at'          => date("Y-m-d H:i:s"),

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Rules\MatchOldPassword;
+use App\Models\Product;
+use App\Models\Category;
 use Validator;
 
 class HomeController extends Controller
@@ -56,6 +58,43 @@ class HomeController extends Controller
         );
    
         return response()->json(['success' => 'Updated Successfully.']);
+    }
+
+    public function index()
+    {
+        $categories = Category::latest()->get();
+        $products = Product::latest()->get();
+        return view('customer.home' , compact('products','categories'));
+    }
+
+
+    public function filter(Request $request){
+        $filter = $request->get('filter');
+        $value  = $request->get('value');
+
+        if($filter == 'search'){
+            $data = Product::where('name', 'LIKE', "%$value%")->latest()->get();
+        }
+
+        if($filter == 'category'){
+            if($value == ''){
+                $data = Product::latest()->get();
+            }else{
+                $data = Product::where('category_id', $value)->latest()->get();
+            }
+        }
+        
+        foreach($data as $item){
+            $products[] = array(
+                'id'           => $item->id,
+                'name'         => $item->name,
+                'category'     => $item->category->name,
+                'image'        => $item->image,
+            );
+        }
+        return response()->json([
+            'products'  => $products,
+        ]);
     }
 
 }

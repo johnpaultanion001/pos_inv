@@ -162,7 +162,8 @@ class OrderController extends Controller
 
         $orders = Order::create([
             'user_id'   => auth()->user()->id,
-            'shipping_option' => $request->get('shipping')
+            'status'   => 'APPROVED',
+            'customer' => $request->get('customer')
         ]);
         foreach($orderproducts as $order){
             $sps = ProductSizePrice::where('product_id', $order->product->id)
@@ -189,11 +190,9 @@ class OrderController extends Controller
     
     public function orders_history(){
         $orders = Order::where('user_id', auth()->user()->id)
-                            ->where('status', "PENDING")->latest()->get();
-        $orders_approved = Order::where('user_id', auth()->user()->id)
                             ->where('status', "APPROVED")->latest()->get();
 
-        return view('customer.orders_history' ,compact('orders' , 'orders_approved'));
+        return view('customer.orders_history' ,compact('orders'));
     }
     public function cancel_order(Order $order){
         Order::find($order->id)

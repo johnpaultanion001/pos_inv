@@ -12,7 +12,7 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'status',
-        'shipping_option',
+        'customer',
     ];
 
     public function orderproducts()
