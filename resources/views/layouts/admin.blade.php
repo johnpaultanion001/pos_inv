@@ -28,7 +28,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
     <!-- CSS Files -->
-   <link href="{{ asset('/admin/css/material-dashboard.css?v=3.0.0') }}" type="text/css" rel="stylesheet" />
+   <link href="{{ asset('/admin/css/material-dashboard.css') }}" type="text/css" rel="stylesheet" />
 
     
     
@@ -45,7 +45,7 @@
 
     
     @yield('third_party_stylesheets')
-    @stack('page_css')
+  
 
     <style>
        
@@ -87,6 +87,10 @@
             border: 1px solid red !important;
             padding: 0.625rem 0.75rem;
             line-height: 1.3 !important;
+        }
+        .bg-gradient-primary{
+            background-image:red !important;
+
         }
     
     </style>

@@ -10,12 +10,15 @@
           <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Inventories</li>
         @elseif(request()->is('admin/orders'))
           <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Orders</li>
-        @elseif(request()->is('admin/customer_list'))
-          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Customers</li>
+        @elseif(request()->is('admin/accounts'))
+          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Accounts</li>
         @elseif(request()->is('admin/categories'))
         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Categories</li>
         @elseif(request()->is('admin/sales_reports/*'))
         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Sales Reports</li>
+        @elseif(request()->is('admin/employees'))
+        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Employees</li>
+
         @endif
 
       </ol>
@@ -25,12 +28,14 @@
         <h6 class="font-weight-bolder mb-0">Inventories</h6>
       @elseif(request()->is('admin/orders'))
         <h6 class="font-weight-bolder mb-0">Orders</h6>
-      @elseif(request()->is('admin/customer_list'))
-        <h6 class="font-weight-bolder mb-0">Customers</h6>
+      @elseif(request()->is('admin/accounts'))
+        <h6 class="font-weight-bolder mb-0">Accounts</h6>
       @elseif(request()->is('admin/categories'))
         <h6 class="font-weight-bolder mb-0">Categories</h6>
       @elseif(request()->is('admin/sales_reports/*'))
         <h6 class="font-weight-bolder mb-0">Sales Reports</h6>
+      @elseif(request()->is('admin/employees'))
+        <h6 class="font-weight-bolder mb-0">Employees</h6>
       @endif
       
     </nav>
@@ -56,7 +61,7 @@
         <li class="nav-item dropdown pe-2 d-flex align-items-center">
           <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
            
-            <i class="fas fa-users p-2"></i> <span class="text-uppercase">{{Auth()->user()->name}}</span>  <i class="fas fa-angle-down"></i>
+            <i class="fas fa-users p-2"></i> <span class="text-uppercase">{{Auth()->user()->employee->name}}</span>  <i class="fas fa-angle-down"></i>
             
           </a>
           <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">

@@ -52,9 +52,9 @@ class LoginController extends Controller
       }
 
         
-         if(Auth::user()->role == 'customer'){
+         if(Auth::user()->role == 'cashier'){
              $redirectTo = '/';
-         }else if(Auth::user()->role == 'admin'){
+         }else if(Auth::user()->role == 'manager'){
              $redirectTo = '/admin/dashboard';
          }
 

@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function orders()
     {
         $userrole = auth()->user()->role;
-        if($userrole == 'admin'){
+        if($userrole == 'manager'){
             $orders = Order::latest()->get();
             return view('admin.orders' ,compact('orders'));
         }

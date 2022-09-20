@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\OrderProduct;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Employee;
 
 
 class HomeController extends Controller
@@ -29,18 +31,24 @@ class HomeController extends Controller
     public function index()
     {
         $userrole = auth()->user()->role;
-        if($userrole == 'admin'){
-
+        if($userrole == 'manager'){
             $products = Product::latest()->get();
             $products_today = Product::whereDay('created_at', '=', date('d'))->get();
 
-            $customers = User::where('role', 'customer')->get();
-            $customers_today = User::where('role', 'customer')->whereDay('created_at', '=', date('d'))->get();
+            $employees = Employee::latest()->get();
+            $employees_today = Employee::latest()->whereDay('created_at', '=', date('d'))->get();
 
             $orders = Order::latest()->get();
             $orders_today = Order::whereDay('created_at', '=', date('d'))->get();
 
-            return view('admin.home', compact('products','products_today','customers','customers_today', 'orders','orders_today'));
+            $sales = OrderProduct::where('isCheckout', '1')->sum('amount');
+            $sales_today = OrderProduct::where('isCheckout', '1')->whereDay('created_at', '=', date('d'))->sum('amount');
+
+            $sales_record = OrderProduct::where('isCheckout', '1')->whereDay('created_at', '=', date('d'))->get();
+
+
+            return view('admin.home', compact('products','products_today','employees',
+                    'employees_today', 'orders','orders_today','sales','sales_today','sales_record'));
         }else{
             return redirect()->route('customer.products');
         }

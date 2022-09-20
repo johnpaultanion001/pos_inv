@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         $userrole = auth()->user()->role;
-        if($userrole == 'admin'){
+        if($userrole == 'manager'){
             date_default_timezone_set('Asia/Manila');
             
             $products = Product::latest()->get();

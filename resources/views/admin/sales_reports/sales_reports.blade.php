@@ -52,7 +52,7 @@
                                                 {{$order->order->id ?? ''}}
                                             </td>
                                             <td>
-                                                {{$order->customer ?? ''}}
+                                                {{$order->order->customer ?? ''}}
                                             </td>
                                             <td>
                                                 {{$order->product->name ?? ''}}

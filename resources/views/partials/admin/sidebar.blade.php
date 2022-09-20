@@ -2,8 +2,8 @@
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand m-0" href="/admin/dashboard">
-      
-      <h5 class="font-weight-bold text-white text-uppercase text-justify text-center">{{ trans('panel.site_title') }}</h5>
+    <img class="bi me-2" src="/assets/img/logo.png" alt="logo" width="40" height="32">
+      <span class="text-white h5">{{ trans('panel.site_title') }}</span>
     </a>
   </div>
   <hr class="horizontal light mt-0 mb-2">
@@ -54,7 +54,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white {{ request()->is('admin/customer_list') || request()->is('admin/customer_list/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.customer") }}">
+        <a class="nav-link text-white {{ request()->is('admin/employees') || request()->is('admin/employees/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.employees.index") }}">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             
             <i class="fas fa-users "></i>
@@ -63,7 +63,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white {{ request()->is('admin/customer_list') || request()->is('admin/customer_list/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.customer") }}">
+        <a class="nav-link text-white {{ request()->is('admin/accounts') || request()->is('admin/accounts/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.accounts.index") }}">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="material-icons opacity-10">person</i>
           </div>

@@ -42,7 +42,7 @@
                                             <span class="badge bg-primary">{{  $order->customer ?? '' }}</span>
                                         </td>
                                         <td>
-                                            {{  $order->user->name ?? '' }}
+                                            {{  $order->user->employee->name ?? '' }}
                                         </td>
                                         <td>
                                          
