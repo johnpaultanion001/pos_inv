@@ -71,14 +71,17 @@
         </a>
       </li>
       <li class="nav-item">
+
         <a class="nav-link text-white {{ request()->is('customer/products') || request()->is('customer/products/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("customer.products") }}">
+
+        <a class="nav-link text-white" href="{{ route("customer.products") }}">
+
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-shopping-cart" style="font-size: 17px"></i>
           </div>
           <span class="nav-link-text ms-1 text-uppercase">POS</span>
         </a>
       </li>
-  
    
     </ul>
   </div>
