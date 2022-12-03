@@ -85,10 +85,11 @@ class HomeController extends Controller
         }
         
         foreach($data as $item){
+          
             $products[] = array(
                 'id'           => $item->id,
-                'name'         => $item->name,
-                'category'     => $item->category->name,
+                'name'         => $item->name ?? '',
+                'category'     => $item->category->name ?? '',
                 'image'        => $item->image,
             );
         }

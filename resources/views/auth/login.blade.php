@@ -7,13 +7,12 @@ background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
 ">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center">
-            <h1 class="display-4 fw-bolder text-warning">{{ trans('panel.site_title') }}</h1>
-            <p class="lead fw-normal text-white-50 mb-0 ">LOG IN</p>
+        <img src="assets/img/logo.png" alt="logo" width="150" height="150">
         </div>
     </div>
 </header>
 
-<section class="py-5" style="margin-top: -100px; height: 70vh; ">
+<section class="py-5" style="margin-top: -100px; height: 70vh; background-image: url('assets/img/bg.jpg');  background-position: cover;" >
         <div class="row gx-8 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-10 justify-content-center">
            <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -22,7 +21,7 @@ background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
                   <div class="text-center">
-                    <img src="assets/img/logo.png" alt="logo" width="120" height="120">
+                    <p class="lead fw-normal text-dark-50 mb-0 ">LOG IN</p>
                   </div>
                       <br>
                       <br>

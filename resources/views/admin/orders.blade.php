@@ -15,7 +15,7 @@
                     <div class="card-header border-0">
                         <div class="row ">
                             <div class="col-md-11">
-                                <h4 class="mb-0 text-uppercase" id="titletable">Manage Orders</h4>
+                                <h4 class="mb-0 text-uppercase" id="titletable">Manage Product Orders</h4>
                             </div>
                         </div>
                     </div>

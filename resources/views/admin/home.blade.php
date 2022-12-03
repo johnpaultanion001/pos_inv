@@ -69,7 +69,7 @@
                 <i class="fas fa-shopping-cart" style="font-size: 17px"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">SALES FOR TODAY</p>
+                <p class="text-sm mb-0 text-capitalize">TRANSACTION FOR TODAY</p>
                 <h4 class="mb-0">{{$sales_today}}</h4>
               </div>
             </div>

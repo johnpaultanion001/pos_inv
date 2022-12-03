@@ -9,13 +9,13 @@
         @elseif(request()->is('admin/products'))
           <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Inventories</li>
         @elseif(request()->is('admin/orders'))
-          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Orders</li>
+          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Product Orders</li>
         @elseif(request()->is('admin/accounts'))
           <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Accounts</li>
         @elseif(request()->is('admin/categories'))
         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Categories</li>
         @elseif(request()->is('admin/sales_reports/*'))
-        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Sales Reports</li>
+        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Transactions</li>
         @elseif(request()->is('admin/employees'))
         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Employees</li>
 
@@ -27,13 +27,13 @@
       @elseif(request()->is('admin/products'))
         <h6 class="font-weight-bolder mb-0">Inventories</h6>
       @elseif(request()->is('admin/orders'))
-        <h6 class="font-weight-bolder mb-0">Orders</h6>
+        <h6 class="font-weight-bolder mb-0">Product Orders</h6>
       @elseif(request()->is('admin/accounts'))
         <h6 class="font-weight-bolder mb-0">Accounts</h6>
       @elseif(request()->is('admin/categories'))
         <h6 class="font-weight-bolder mb-0">Categories</h6>
       @elseif(request()->is('admin/sales_reports/*'))
-        <h6 class="font-weight-bolder mb-0">Sales Reports</h6>
+        <h6 class="font-weight-bolder mb-0">Transactions</h6>
       @elseif(request()->is('admin/employees'))
         <h6 class="font-weight-bolder mb-0">Employees</h6>
       @endif

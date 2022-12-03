@@ -33,7 +33,7 @@
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-shopping-cart" style="font-size: 17px"></i>
           </div>
-          <span class="nav-link-text ms-1 text-uppercase">Orders</span>
+          <span class="nav-link-text ms-1 text-uppercase">Product Orders</span>
         </a>
       </li>
       <li class="nav-item">
@@ -50,7 +50,7 @@
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-list" style="font-size: 17px"></i>
           </div>
-          <span class="nav-link-text ms-1 text-uppercase">Sales Reports</span>
+          <span class="nav-link-text ms-1 text-uppercase">Transactions</span>
         </a>
       </li>
       <li class="nav-item">
@@ -68,6 +68,14 @@
             <i class="material-icons opacity-10">person</i>
           </div>
           <span class="nav-link-text ms-1 text-uppercase">Accounts</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white {{ request()->is('customer/products') || request()->is('customer/products/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("customer.products") }}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-shopping-cart" style="font-size: 17px"></i>
+          </div>
+          <span class="nav-link-text ms-1 text-uppercase">POS</span>
         </a>
       </li>
   

@@ -299,6 +299,7 @@ background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, F
         },
         success: function(data){
                     if(data.products){
+                        console.log(data.products);
                         var products = '';
                         $.each(data.products, function(key,value){
                             products += '<div class="col mb-5">'
@@ -308,7 +309,7 @@ background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, F
                                         products += '<div class="card-body p-4">'
                                             products += '<div class="text-center">'
                                                 products += '<h5 class="fw-bolder">'+value.name+'</h5>'
-                                                
+                                               
                                             products += '</div>'
                                         products += '</div>'
                                     products += '<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">'

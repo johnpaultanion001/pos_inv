@@ -43,7 +43,6 @@ class HomeController extends Controller
 
             $sales = OrderProduct::where('isCheckout', '1')->sum('amount');
             $sales_today = OrderProduct::where('isCheckout', '1')->whereDay('created_at', '=', date('d'))->sum('amount');
-
             $sales_record = OrderProduct::where('isCheckout', '1')->whereDay('created_at', '=', date('d'))->get();
 
 
