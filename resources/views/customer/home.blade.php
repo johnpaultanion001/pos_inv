@@ -158,11 +158,11 @@ background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, F
                     $.each(data.sps, function(key,value){
                         if(key == 0){
                             sps += '<label class="btn btn-secondary active">';
-                                sps += '<input type="radio" name="size" autocomplete="off" checked value="'+value.size_id+'"> ' + value.size + ' ₱ ' + value.price + ' STOCK: ('+value.stock+')';
+                                sps += '<input type="radio" name="size" autocomplete="off" checked value="'+value.size_id+'"> ' + value.size + ' ₱ ' + value.price + ' AVAILABLE: ('+value.stock+')';
                             sps += '</label>'; 
                         }else{
                             sps += '<label class="btn btn-secondary">';
-                                sps += '<input type="radio" name="size" autocomplete="off" value="'+value.size_id+'"> ' + value.size + ' ₱ ' + value.price + ' STOCK: ('+value.stock+')';
+                                sps += '<input type="radio" name="size" autocomplete="off" value="'+value.size_id+'"> ' + value.size + ' ₱ ' + value.price + ' AVAILABLE: ('+value.stock+')';
                             sps += '</label>'; 
                         }
                                    

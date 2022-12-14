@@ -17,6 +17,8 @@
                             <div class="col-md-9">
                                 <h4 class="mb-0 text-uppercase" id="titletable">Transactions</h4>
                                 <b class="mb-0 text-uppercase">{{$title_filter}}</b>
+                               
+                                
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -29,7 +31,9 @@
                                         <option value="all" {{ request()->is('admin/sales_reports/all') ? 'selected' : '' }}>ALL</option>
                                     </select>
                                 </div>
+                                <button class="btn-primary btn mt-2" id="btn_summary">Summary Of Transaction</button>
                             </div> 
+                            
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -81,7 +85,35 @@
         </div>
     </div>
 
-    
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Summary Of Transaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times text-primary"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <table class="table_summary_report" style="width: 100% !important;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>PRODUCT</th>
+                                    <th>SOLD</th>
+                                    <th>AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-uppercase font-weight-bold" id="list_summary">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @section('footer')
         @include('../partials.admin.footer')
@@ -91,8 +123,6 @@
 
 @section('script')
 <script> 
-
-
 $(function () {
     let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 
@@ -105,12 +135,73 @@ $(function () {
         $($.fn.dataTable.tables(true)).DataTable()
             .columns.adjust();
         });
+
+        
 });
 
 $('#filter_dd').on("change", function(event){
     var date = $(this).val();
     window.location.href = '/admin/sales_reports/'+date;
 });
+
+
+$(document).on('click', '#btn_summary', function(){
+    $.ajax({
+        url: "/admin/summary_of_transaction", 
+        type: "get",
+        data: {_token: '{!! csrf_token() !!}'},
+        dataType: "json",
+        beforeSend: function() {
+        },
+        success: function(data){
+            
+            console.log(data.total_amount);
+            var list = '';
+            $.each(data.data, function(key,value){
+                list += '<tr>';
+                    list += '<td>';
+                        list += value.product;
+                    list += '</td>';
+                    list += '<td>';
+                        list += value.sold;
+                    list += '</td>';
+                    list += '<td>';
+                        list += value.amount;
+                    list += '</td>';
+                list += '</tr>';
+            });
+            list += '<tr>';
+                list += '<td>';
+                    list += data.bot_product;
+                list += '</td>';
+                list += '<td>';
+                    list += data.total_sold;
+                list += '</td>';
+                list += '<td>';
+                    list += data.total_amount;
+                list += '</td>';
+            list += '</tr>';
+            
+            $('#list_summary').empty().append(list);
+            $('#formModal').modal('show');
+            table_summary_report();
+        }	
+    })
+});
+
+function table_summary_report(){
+    var table = $('.table_summary_report').DataTable({
+        bDestroy: true,
+        responsive: true,
+    });
+     $.fn.dataTable.ext.search.push(
+         function (settings, data, dataIndex){
+            return (data[1] > 0) ? true : false;
+         }
+      );
+    table.draw();
+}
+
 
 
 

@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Sales Reports
     Route::get('sales_reports/{filter}', 'OrderController@sales_reports')->name('sales_reports');
+    Route::get('summary_of_transaction', 'OrderController@summary_of_transaction')->name('summary_of_transaction');
 
 
      // Categories

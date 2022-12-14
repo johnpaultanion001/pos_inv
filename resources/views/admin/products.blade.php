@@ -44,7 +44,7 @@
                                     
                                     <th scope="col">NAME</th>
                                     <th scope="col">DESCRIPTION</th>
-                                    <th scope="col">SIZE | PRICE | STOCK</th>
+                                    <th scope="col">SIZE | PRICE | AVAILABLE</th>
                                     <th scope="col">CREATED AT</th>
                                 </tr>
                             </thead>
@@ -186,7 +186,7 @@
                                                 <input type="number" name="price[]" id="price" class="form-control" required>
                                             </div>
                                             <div class="col-sm-3">
-                                                <label class="form-label">Stock: <span class="text-danger">*</span></label>
+                                                <label class="form-label">AVAILABLE: <span class="text-danger">*</span></label>
                                                 <input type="number" name="stock[]" id="stock" class="form-control" required>
                                             </div>
                                             <div class="col-sm-3">

@@ -58,5 +58,33 @@ class OrderController extends Controller
         return view('admin.sales_reports.sales_reports', compact('sales','title_filter'));
        
     }
+
+    public function summary_of_transaction(){
+        $products    = Product::latest()->get();
+
+        foreach($products as $product){
+    
+
+            $sold = OrderProduct::where('product_id', $product->id)->where('isCheckout', true)->sum('qty');
+            $amount = OrderProduct::where('product_id', $product->id)->where('isCheckout', true)->sum('amount');
+            
+            $sales[] = array(
+                'product'              => $product->name,
+                'sold'             => $sold,
+                'amount'            => $amount,  
+            );
+        }
+
+        $total_amount = OrderProduct::where('isCheckout', true)->sum('amount');
+        $total_sold = OrderProduct::where('isCheckout', true)->sum('qty');
+
+        return response()->json([
+            'data' => $sales,
+            'total_amount' => $total_amount,
+            'total_sold' => $total_sold,
+            'bot_product' => '-',
+        ]);
+    }
+    
     
 }

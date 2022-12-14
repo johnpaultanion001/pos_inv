@@ -184,7 +184,7 @@ background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, F
                     var sps = "";
                     $.each(data.sps, function(key,value){
                             sps += '<label class="btn btn-secondary '+value.selected_size_active+'">';
-                                sps += '<input type="radio" name="size" autocomplete="off" value="'+value.size_id+'" '+value.selected_size+'> ' + value.size + ' ₱ ' + value.price + ' STOCK: ('+value.stock+')';
+                                sps += '<input type="radio" name="size" autocomplete="off" value="'+value.size_id+'" '+value.selected_size+'> ' + value.size + ' ₱ ' + value.price + '  AVAILABLE: ('+value.stock+')';
                             sps += '</label>'; 
                     })
                     $('#sps').empty().append(sps);
