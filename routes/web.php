@@ -23,14 +23,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Sales Reports
     Route::get('sales_reports/{filter}', 'OrderController@sales_reports')->name('sales_reports');
 
-     // Admin List
-     Route::get('admin_list', 'CustomerListController@admin_index')->name('admin');
-     Route::post('admin_list', 'CustomerListController@admin_store')->name('admin.store');
-     Route::put('admin_list/{admin}', 'CustomerListController@admin_update')->name('admin.update');
 
-     // Change Status
-     Route::put('customer/status/{user}', 'CustomerListController@status')->name('customer.status');
-    
      // Categories
      Route::resource('categories', 'CategoryController');
 
@@ -39,6 +32,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
      // Accounts
      Route::resource('accounts', 'AccountController');
+
+     // raws
+     Route::resource('raw_inventory', 'RawController');
 });
 
 

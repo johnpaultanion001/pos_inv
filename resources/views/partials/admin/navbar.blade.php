@@ -6,8 +6,10 @@
 
         @if(request()->is('admin/dashboard'))
           <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+        @elseif(request()->is('admin/raw_inventory'))
+        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Raw Inventories</li>
         @elseif(request()->is('admin/products'))
-          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Inventories</li>
+          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Product Inventories</li>
         @elseif(request()->is('admin/orders'))
           <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Product Orders</li>
         @elseif(request()->is('admin/accounts'))
@@ -24,8 +26,10 @@
       </ol>
       @if(request()->is('admin/dashboard'))
         <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+      @elseif(request()->is('admin/raw_inventory'))
+        <h6 class="font-weight-bolder mb-0">Raw Inventories</h6>
       @elseif(request()->is('admin/products'))
-        <h6 class="font-weight-bolder mb-0">Inventories</h6>
+        <h6 class="font-weight-bolder mb-0">Product Inventories</h6>
       @elseif(request()->is('admin/orders'))
         <h6 class="font-weight-bolder mb-0">Product Orders</h6>
       @elseif(request()->is('admin/accounts'))

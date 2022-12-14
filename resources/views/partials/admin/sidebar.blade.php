@@ -1,9 +1,9 @@
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
-  <div class="sidenav-header">
+  <div class="sidenav-header text-center">
     <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand m-0" href="/admin/dashboard">
-    <img class="bi me-2" src="/assets/img/logo.png" alt="logo" width="40" height="32">
-      <span class="text-white h5">{{ trans('panel.site_title') }}</span>
+    <img class="bi me-2" src="/assets/img/logo.png" alt="logo" width="50" height="42">
+      
     </a>
   </div>
   <hr class="horizontal light mt-0 mb-2">
@@ -19,13 +19,23 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link text-white {{ request()->is('admin/raw_inventory') || request()->is('admin/raw_inventory/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.raw_inventory.index") }}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-list" style="font-size: 17px"></i>
+          </div>
+          <span class="nav-link-text ms-1 text-uppercase">Raw Inventories</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link text-white {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.products.index") }}">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-list" style="font-size: 17px"></i>
           </div>
-          <span class="nav-link-text ms-1 text-uppercase">Inventories</span>
+          <span class="nav-link-text ms-1 text-uppercase">Product Inventories</span>
         </a>
       </li>
+      
       
 
       <li class="nav-item">
