@@ -20,6 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('address')->nullable();
             $table->string('gender')->nullable();
             $table->string('position')->nullable();
+            $table->string('branch')->nullable();
             $table->string('isUser')->default('0');
             
             $table->timestamps();

@@ -32,6 +32,10 @@
                                     </select>
                                 </div>
                                 <button class="btn-primary btn mt-2" id="btn_summary">Summary Of Transaction</button>
+                                @if(auth()->user()->role != 'manager')
+                                <button class="btn-success btn mt-2" id="btn_upload">Upload Transaction</button>
+                                @endif
+                                
                             </div> 
                             
                         </div>
@@ -114,6 +118,43 @@
             </div>
         </div>
     </div>
+
+    <form method="post" id="uploadForm" class="contact-form">
+        @csrf
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Upload Transaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times text-primary"></i>
+                    </button>
+        
+                    </div>
+                    <div class="modal-body row">
+                        <div class="col-sm-12">
+                            <div class="form-group" id="image-section">
+                                <label class="form-label">Upload File: <span class="text-danger">*</span></label>
+                                <div class="input-group input-group-outline my-3">
+                                <input type="file" name="file_upload" id="file_upload" class="form-control" >
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong id="error-file_upload"></strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="action" id="action" value="Add" />
+                        <input type="hidden" name="hidden_id" id="hidden_id" />
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" name="action_button" id="action_button" class="btn  btn-primary" value="Save" />
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
     @section('footer')
         @include('../partials.admin.footer')
@@ -201,6 +242,77 @@ function table_summary_report(){
       );
     table.draw();
 }
+
+$(document).on('click', '#btn_upload', function(){
+    $('#uploadModal').modal('show');
+    $('#uploadForm')[0].reset();
+    $('.form-control').removeClass('is-invalid')
+
+});
+
+
+$('#uploadForm').on('submit', function(event){
+    event.preventDefault();
+    $('.form-control').removeClass('is-invalid')
+    var action_url = "{{ route('admin.uploaded_transaction.store') }}";
+    var type = "POST";
+
+    $.ajax({
+        url: action_url,
+        method:type,
+        data:  new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+
+        dataType:"json",
+        beforeSend:function(){
+            $("#action_button").attr("disabled", true);
+            $("#action_button").attr("value", "Loading..");
+        },
+        success:function(data){
+            if($('#action').val() == 'Edit'){
+                $("#action_button").attr("disabled", false);
+                $("#action_button").attr("value", "Update");
+            }else{
+                $("#action_button").attr("disabled", false);
+                $("#action_button").attr("value", "Submit");
+            }
+            if(data.errors){
+                $.each(data.errors, function(key,value){
+                    if(key == $('#'+key).attr('id')){
+                        $('#'+key).addClass('is-invalid')
+                        $('#error-'+key).text(value)
+                    }
+                    if(key == 'image'){
+                        $('.image').addClass('is-invalid')
+                        $('#error-image').text(value)
+                    }
+                })
+            }
+            if(data.success){
+                $.confirm({
+                title: 'Confirmation',
+                content: data.success,
+                type: 'green',
+                buttons: {
+                        confirm: {
+                            text: 'confirm',
+                            btnClass: 'btn-blue',
+                            keys: ['enter', 'shift'],
+                            action: function(){
+                                location.reload();
+                            }
+                        },
+                        
+                    }
+                });
+                $('#uploadModal').modal('hide');
+            }
+            
+        }
+    });
+});
 
 
 

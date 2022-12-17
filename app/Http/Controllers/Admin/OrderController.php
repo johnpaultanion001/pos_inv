@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\UploadedTransaction;
 use Validator;
 use Carbon\Carbon;
 
@@ -14,12 +15,9 @@ class OrderController extends Controller
 {
     public function orders()
     {
-        $userrole = auth()->user()->role;
-        if($userrole == 'manager'){
             $orders = Order::latest()->get();
             return view('admin.orders' ,compact('orders'));
-        }
-        return abort('403');
+      
     }
 
     public function sales_reports($filter){
@@ -84,6 +82,37 @@ class OrderController extends Controller
             'total_sold' => $total_sold,
             'bot_product' => '-',
         ]);
+    }
+
+    public function uploaded_transaction()
+    {
+       $transactions =  UploadedTransaction::latest()->get();
+        return view('admin.sales_reports.uploaded_transaction', compact('transactions'));
+    }
+
+
+    public function uploaded_transaction_store(Request $request)
+    {
+        $validated =  Validator::make($request->all(), [
+          
+            'file_upload' =>  ['required'],
+        ]);
+
+        if ($validated->fails()) {
+            return response()->json(['errors' => $validated->errors()]);
+        }
+        $imgs = $request->file('file_upload');
+        $extension = $imgs->getClientOriginalExtension(); 
+        $file_name_to_save = time()."_".".".$extension;
+        $imgs->move('assets/file/', $file_name_to_save);
+
+        UploadedTransaction::create([
+            'user_id' => Auth()->user()->id,
+            'file' => $file_name_to_save,
+        ]);
+
+
+        return response()->json(['success' => 'Added Successfully.']);
     }
     
     

@@ -14,14 +14,11 @@ class RawController extends Controller
     
     public function index()
     {
-        $userrole = auth()->user()->role;
-        if($userrole == 'manager'){
-            date_default_timezone_set('Asia/Manila');
+         date_default_timezone_set('Asia/Manila');
             $raws = Raw::latest()->get();
 
             return view('admin.raws', compact('raws'));
-        }
-        return abort('403');
+        
     }
 
    

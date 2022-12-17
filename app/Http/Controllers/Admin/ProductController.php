@@ -19,17 +19,13 @@ class ProductController extends Controller
  
     public function index()
     {
-        $userrole = auth()->user()->role;
-        if($userrole == 'manager'){
-            date_default_timezone_set('Asia/Manila');
-            
+        
             $products = Product::latest()->get();
             $categories = Category::latest()->get();
             $sizes = Size::latest()->get();
 
             return view('admin.products', compact('products', 'categories', 'sizes'));
-        }
-        return abort('403');
+       
     }
    
     public function store(Request $request)

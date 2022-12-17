@@ -30,8 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userrole = auth()->user()->role;
-        if($userrole == 'manager'){
             $products = Product::latest()->get();
             $products_today = Product::whereDay('created_at', '=', date('d'))->get();
 
@@ -48,8 +46,7 @@ class HomeController extends Controller
 
             return view('admin.home', compact('products','products_today','employees',
                     'employees_today', 'orders','orders_today','sales','sales_today','sales_record'));
-        }else{
-            return redirect()->route('customer.products');
-        }
+       
+        
     }
 }

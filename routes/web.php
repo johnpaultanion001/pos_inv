@@ -24,6 +24,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('sales_reports/{filter}', 'OrderController@sales_reports')->name('sales_reports');
     Route::get('summary_of_transaction', 'OrderController@summary_of_transaction')->name('summary_of_transaction');
 
+    Route::get('uploaded_transaction', 'OrderController@uploaded_transaction')->name('uploaded_transaction.index');
+    Route::post('uploaded_transaction', 'OrderController@uploaded_transaction_store')->name('uploaded_transaction.store');
+
 
      // Categories
      Route::resource('categories', 'CategoryController');

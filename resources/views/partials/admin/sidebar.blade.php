@@ -63,6 +63,7 @@
           <span class="nav-link-text ms-1 text-uppercase">Transactions</span>
         </a>
       </li>
+      @if(Auth()->user()->role == 'manager')
       <li class="nav-item">
         <a class="nav-link text-white {{ request()->is('admin/employees') || request()->is('admin/employees/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.employees.index") }}">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -80,6 +81,15 @@
           <span class="nav-link-text ms-1 text-uppercase">Accounts</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link text-white {{ request()->is('admin/uploaded_transaction') || request()->is('admin/uploaded_transaction/*') ? 'bg-gradient-primary' : '' }}" href="{{ route("admin.uploaded_transaction.index") }}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">person</i>
+          </div>
+          <span class="nav-link-text ms-1 text-uppercase">Uploaded Transaction</span>
+        </a>
+      </li>
+      @endif
       <li class="nav-item">
         <a class="nav-link text-white" href="{{ route("customer.products") }}">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

@@ -11,14 +11,11 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $userrole = auth()->user()->role;
-        if($userrole == 'manager'){
-            date_default_timezone_set('Asia/Manila');
+           date_default_timezone_set('Asia/Manila');
             $categories = Category::latest()->get();
 
             return view('admin.categories', compact('categories'));
-        }
-        return abort('403');
+
     }
 
    

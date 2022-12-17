@@ -19,6 +19,7 @@
                             </div>
                             <div class="col-md-2">
                                 <button type="button" name="create_record" id="create_record" class="text-uppercase create_record btn btn-sm btn-primary">NEW RECORD</button>
+                                <button type="button" id="critical_stock" class="text-uppercase create_record btn btn-sm btn-danger">CRITICAL STOCK</button>
                             </div>
                         </div>
                     </div>
@@ -173,6 +174,21 @@ $(document).on('click', '#create_record', function(){
     $('#action_button').val('Submit');
     $('#action').val('Add');
 });
+
+$(document).on('click', '#critical_stock', function(){
+    var table = $('.datatable-table').DataTable({
+        bDestroy: true,
+        responsive: true,
+    });
+     $.fn.dataTable.ext.search.push(
+         function (settings, data, dataIndex){
+            return (data[5] < 6) ? true : false;
+         }
+      );
+    table.draw();
+});
+
+
 
 $('#myForm').on('submit', function(event){
     event.preventDefault();
