@@ -24,6 +24,7 @@ class EmployeeController extends Controller
             'contact_number' => ['required'],
             'address' => ['required'],
             'gender' => ['required'],
+            'branch'    =>  ['required'],
             'position' => ['required'],
         ]);
 
@@ -37,6 +38,7 @@ class EmployeeController extends Controller
             'address' => $request->input('address'),
             'gender' => $request->input('gender'),
             'position' => $request->input('position'),
+            'branch' => $request->input('branch'),
         ]);
 
         return response()->json(['success' => 'Added Successfully.']);
@@ -66,6 +68,7 @@ class EmployeeController extends Controller
             'address' => ['required'],
             'gender' => ['required'],
             'position' => ['required'],
+            'branch'    =>  ['required'],
         ]);
 
         if ($validated->fails()) {
@@ -78,6 +81,7 @@ class EmployeeController extends Controller
             'address' => $request->input('address'),
             'gender' => $request->input('gender'),
             'position' => $request->input('position'),
+            'branch' => $request->input('branch'),
         ]);
 
         return response()->json(['success' => 'Updated Successfully.']);

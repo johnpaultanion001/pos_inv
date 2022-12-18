@@ -18,6 +18,6 @@ class UploadedTransaction extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id', 'employee_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

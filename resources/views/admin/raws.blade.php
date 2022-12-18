@@ -182,7 +182,7 @@ $(document).on('click', '#critical_stock', function(){
     });
      $.fn.dataTable.ext.search.push(
          function (settings, data, dataIndex){
-            return (data[5] < 6) ? true : false;
+            return (data[6] < 6) ? true : false;
          }
       );
     table.draw();

@@ -33,6 +33,7 @@
                                     <th scope="col">GENDER</th>
                                     <th scope="col">POSTION</th>
                                     <th scope="col">ACCOUNT ROLE</th>
+                                    <th scope="col">BRANCH</th>
                                     <th scope="col">CREATED AT</th>
                                 </tr>
                             </thead>
@@ -62,6 +63,9 @@
                                         </td>
                                         <td>
                                             {{  $employee->user->role ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{  $employee->branch ?? '' }}
                                         </td>
                                         <td>
                                             {{ $employee->created_at->format('M j , Y h:i A') }}
@@ -129,7 +133,16 @@
                                         </span>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                        <label class="form-label">Branch: <span class="text-danger">*</span></label>
+                                        <input type="text" name="branch" id="branch" class="form-control" >
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong id="error-branch"></strong>
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                         <label class="form-label">Address: <span class="text-danger">*</span></label>
                                         <input type="text" name="address" id="address" class="form-control" >

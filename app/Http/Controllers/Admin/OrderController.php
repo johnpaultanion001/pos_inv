@@ -88,6 +88,7 @@ class OrderController extends Controller
     {
        $transactions =  UploadedTransaction::latest()->get();
         return view('admin.sales_reports.uploaded_transaction', compact('transactions'));
+        
     }
 
 
